@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "MyFont";
+  src: url("");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "MyFont";
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
