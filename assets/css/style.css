@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "MyFont";
+  src: url("./assets/fonts/NBInternationalProBoo.woff2");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "MyFont";
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+.page1 {
+  height: 100vh;
+  width: 100%;
+  background-color: aqua;
+  position: relative;
+}
+.page1 video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+.page1text {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
