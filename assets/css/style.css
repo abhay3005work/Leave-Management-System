@@ -56,9 +56,10 @@ nav .navtexts h5 {
   font-size: 1.1vw;
   font-weight: 100;
 }
-nav i {
+.icon i {
   font-size: 1.5vw;
-  font-weight: 300;
+  /* font-weight: 300; */
+  cursor: pointer;
 }
 .page1 h1 {
   position: absolute;
@@ -66,4 +67,10 @@ nav i {
   left: 10%;
   font-size: 6vw;
   font-weight: 200;
+}
+.logo h3 {
+  color: #fff; /* Initial color */
+  display: inline-block; /* Allow movement */
+  transition: color 0.3s ease; /* Smooth color transition */
+  cursor: pointer; /* Change cursor to pointer */
 }
