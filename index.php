@@ -18,8 +18,15 @@
         ></video>
         <div class="page1text">
           <nav>
-            <h3>NueroVista</h3>
+            <h3>NueroVista.</h3>
+            <div class="navtexts">
+              <h5>quiz</h5>
+              <h5>solutions</h5>
+              <h5>game</h5>
+            </div>
+            <i class="fa-solid fa-music"></i>
           </nav>
+          <h1>What is Nuerovista ?</h1>
         </div>
       </div>
     </div>

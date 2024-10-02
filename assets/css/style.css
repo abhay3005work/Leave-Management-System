@@ -1,6 +1,6 @@
 @font-face {
   font-family: "MyFont";
-  src: url("./assets/fonts/NBInternationalProBoo.woff2");
+  src: url("../fonts/NBInternationalProBoo.woff2");
 }
 * {
   margin: 0;
@@ -28,6 +28,42 @@ body {
 .page1text {
   height: 100%;
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.411);
   position: relative;
+  z-index: 2;
+  color: white;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  /* background-color: red; */
+  padding: 3vw 3vw;
+  position: fixed;
+}
+
+nav h3 {
+  font-size: 1.7vw;
+  font-weight: 200;
+}
+nav .navtexts {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+nav .navtexts h5 {
+  font-size: 1.1vw;
+  font-weight: 100;
+}
+nav i {
+  font-size: 1.5vw;
+  font-weight: 300;
+}
+.page1 h1 {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  font-size: 6vw;
+  font-weight: 200;
 }
