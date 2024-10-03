@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Minds Of Teens</title>
   <?php include 'header/header.php'; ?>
 
 </head>
@@ -23,16 +23,11 @@
           <div class="logo">
             <h3>NueroVista.</h3>
           </div>
-          <div class="navtexts">
-            <h5>quiz</h5>
-            <h5>solutions</h5>
-            <h5>game</h5>
-          </div>
           <div class="icon">
             <i class="fa-solid fa-music" id="playsong" onclick="songplay()"></i>
           </div>
         </nav>
-        <h1>What is Nuerovista ?</h1>
+        <h1 class="h1text">What is Nuerovista ?</h1>
       </div>
     </div>
   </div>

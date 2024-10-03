@@ -10,8 +10,9 @@
 }
 html,
 body {
-  height: 300vh;
+  height: 100%;
   width: 100%;
+  background-color: #a0d1a7;
 }
 .page1 {
   height: 100vh;
@@ -67,9 +68,10 @@ nav .navtexts h5 {
   left: 10%;
   font-size: 6vw;
   font-weight: 200;
+  color: #fff; /* Set the desired color for h1 here */
 }
 .logo h3 {
-  color: #fff; /* Initial color */
+  color: #f2f2f2; /* Initial color */
   display: inline-block; /* Allow movement */
   transition: color 0.3s ease; /* Smooth color transition */
   cursor: pointer; /* Change cursor to pointer */
