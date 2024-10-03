@@ -98,10 +98,10 @@ function page1animation() {
   const nav = document.querySelector("nav");
 
   let tl = gsap.timeline();
-  tl.from(page1, {
-    duration: 1.5,
-    y: 500,
-  });
+  // tl.from(page1, {
+  //   duration: 0.7,
+  //   y: 500,
+  // });
   tl.from(nav, {
     y: -50,
     opacity: 0,
