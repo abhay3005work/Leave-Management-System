@@ -93,13 +93,15 @@ function logoanimate() {
 logoanimate();
 
 function page1animation() {
-  const logoH3 = document.querySelector(".logo h3");
-  const icon = document.querySelector(".icon i");
+  const page1 = document.querySelector(".page1");
   const h1text = document.querySelector(".page1text h1");
   const nav = document.querySelector("nav");
 
   let tl = gsap.timeline();
-
+  tl.from(page1, {
+    duration: 1.5,
+    y: 500,
+  });
   tl.from(nav, {
     y: -50,
     opacity: 0,
