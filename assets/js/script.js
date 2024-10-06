@@ -73,7 +73,7 @@ function logoanimate() {
   // Hover animation
   logoH3.addEventListener("mouseenter", () => {
     gsap.to(logoH3, {
-      duration: 0.2,
+      duration: 0.1,
       scale: 1.1, // Slightly increase the scale for a subtle zoom
       color: "#9dac94", // Change the text color (e.g., Tomato)
       ease: "power1.out", // Smooth ease-out effect
@@ -115,3 +115,84 @@ function page1animation() {
   });
 }
 page1animation();
+
+function framescrollanimation() {
+  const canvas = document.querySelector("canvas");
+  const context = canvas.getContext("2d");
+  const frames = {
+    currentIndex: 0,
+    maxIndex: 170,
+  };
+  const images = [];
+  let imagesLoaded = 0;
+
+  function preloadImages() {
+    for (var i = 1; i <= frames.maxIndex; i++) {
+      const imageUrl = `./frames/frame_${i.toString().padStart(4, "0")}.jpeg`;
+      const img = new Image();
+      img.src = imageUrl;
+
+      img.onload = function () {
+        images.push(img); // Push image to the array after it's loaded
+        imagesLoaded++;
+        if (imagesLoaded === frames.maxIndex) {
+          loadImage(frames.currentIndex);
+          startAnimation();
+        }
+      };
+
+      img.onerror = function () {
+        console.error(`Failed to load image: ${imageUrl}`);
+      };
+    }
+  }
+
+  function loadImage(index) {
+    if (index >= 0 && index < frames.maxIndex) {
+      // Change maxIndex to images.length
+      const img = images[index];
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const scaleX = canvas.width / img.width;
+      const scaleY = canvas.height / img.height;
+
+      const newWidth = img.width * scaleX;
+      const newHeight = img.height * scaleY;
+
+      const offsetX = (canvas.width - newWidth) / 2;
+      const offsetY = (canvas.height - newHeight) / 2;
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      context.imageSmoothingEnabled = true;
+      context.imageSmoothingQuality = "high";
+
+      context.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+
+      frames.currentIndex = index;
+    }
+  }
+
+  function startAnimation() {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".parent",
+        start: "top top",
+        scrub: 2,
+        end: "bottom bottom",
+      },
+    });
+
+    tl.to(frames, {
+      currentIndex: frames.maxIndex, // Change to maxIndex - 1 for zero-based index
+      onUpdate: function () {
+        loadImage(Math.floor(frames.currentIndex));
+      },
+    });
+  }
+
+  preloadImages();
+}
+
+framescrollanimation();

@@ -30,6 +30,15 @@
         <h1 class="h1text">What is Nuerovista ?</h1>
       </div>
     </div>
+
+    <div class="w-full  bg-zinc-900">
+      <div class="parent relative w-full h-[900vh] ">
+        <div class="w-full sticky top-0 left-0 h-screen">
+          <canvas class="w-full h-screen" id=" canvas"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="page3 w-full h-screen bg-zinc-900"></div>
   </div>
 
 
