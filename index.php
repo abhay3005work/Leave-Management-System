@@ -31,14 +31,30 @@
       </div>
     </div>
 
-    <div class="w-full  bg-zinc-900">
-      <div class="parent relative w-full h-[900vh] ">
+    <div class="w-full page2  bg-zinc-900">
+      <div class="parent relative w-full h-[700vh] ">
         <div class="w-full sticky top-0 left-0 h-screen">
           <canvas class="w-full h-screen" id=" canvas"></canvas>
+          <div
+            class="absolute animate1 z-[99] text-black bottom-20 w-1/2 left-20">
+            <h1 class=" maintext">Solutions that fit your needs.</h1>
+          </div>
+          <div
+            class="absolute animate2 z-[99] bottom-20 w-1/2 right-20 text-white opacity-0">
+            <h1 class=" maintext">
+              Guided steps to a healthier mind.
+            </h1>
+          </div>
+          <div
+            class="absolute animate3 z-[99] text-black bottom-20 w-1/2 left-20 opacity-0">
+            <h1 class="maintext">
+              Confidential mental health tracking.
+            </h1>
+          </div>
         </div>
       </div>
     </div>
-    <div class="page3 w-full h-screen bg-zinc-900"></div>
+
   </div>
 
 

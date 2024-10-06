@@ -138,6 +138,7 @@ function framescrollanimation() {
         if (imagesLoaded === frames.maxIndex) {
           loadImage(frames.currentIndex);
           startAnimation();
+          console.log("All images loaded");
         }
       };
 
@@ -149,16 +150,16 @@ function framescrollanimation() {
 
   function loadImage(index) {
     if (index >= 0 && index < frames.maxIndex) {
-      // Change maxIndex to images.length
       const img = images[index];
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
       const scaleX = canvas.width / img.width;
       const scaleY = canvas.height / img.height;
+      const scale = Math.max(scaleX, scaleY);
 
-      const newWidth = img.width * scaleX;
-      const newHeight = img.height * scaleY;
+      const newWidth = img.width * scale;
+      const newHeight = img.height * scale;
 
       const offsetX = (canvas.width - newWidth) / 2;
       const offsetY = (canvas.height - newHeight) / 2;
@@ -184,15 +185,38 @@ function framescrollanimation() {
       },
     });
 
-    tl.to(frames, {
-      currentIndex: frames.maxIndex, // Change to maxIndex - 1 for zero-based index
-      onUpdate: function () {
-        loadImage(Math.floor(frames.currentIndex));
-      },
-    });
+    function updateFrame(index) {
+      return {
+        currentIndex: index,
+        ease: "linear",
+        onUpdate: function () {
+          loadImage(Math.floor(frames.currentIndex));
+        },
+      };
+    }
+
+    tl.to(frames, updateFrame(50), "a")
+      .to(
+        ".animate1",
+        {
+          opacity: 0,
+          ease: "linear",
+        },
+        "a"
+      )
+
+      .to(frames, updateFrame(80), "second")
+      .to(".animate2", { opacity: 1, ease: "linear" }, "second")
+      .to(frames, updateFrame(110), "third")
+      .to(".animate2", { opacity: 0, ease: "linear" }, "third")
+
+      .to(frames, updateFrame(140), "fourth")
+      .to(".animate3", { opacity: 1, ease: "linear" }, "fourth")
+      .to(frames, updateFrame(169), "fifth")
+      .to(".animate3", { opacity: 0, ease: "linear" }, "fifth");
   }
 
-  preloadImages();
+  preloadImages(); // Moved this outside of startAnimation to ensure images load first
 }
 
 framescrollanimation();

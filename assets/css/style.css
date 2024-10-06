@@ -48,15 +48,6 @@ nav h3 {
   font-size: 1.7vw;
   font-weight: 200;
 }
-nav .navtexts {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-}
-nav .navtexts h5 {
-  font-size: 1.1vw;
-  font-weight: 100;
-}
 .icon i {
   font-size: 1.5vw;
   /* font-weight: 300; */
@@ -75,4 +66,9 @@ nav .navtexts h5 {
   display: inline-block; /* Allow movement */
   transition: color 0.3s ease; /* Smooth color transition */
   cursor: pointer; /* Change cursor to pointer */
+}
+h1.maintext {
+  font-size: 3.4vw;
+  font-weight: 400;
+  white-space: nowrap;
 }
