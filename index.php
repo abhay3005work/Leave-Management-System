@@ -36,11 +36,11 @@
         <div class="w-full sticky top-0 left-0 h-screen">
           <canvas class="w-full h-screen" id=" canvas"></canvas>
           <div
-            class="absolute animate1 z-[99] text-black bottom-20 w-1/2 left-20">
+            class="textdiv absolute animate1 z-[99] text-black bottom-20 w-1/2 left-20">
             <h1 class=" maintext">Solutions that fit your needs.</h1>
           </div>
           <div
-            class="absolute animate2 z-[99] bottom-20 w-1/2 right-20 text-white opacity-0">
+            class="absolute animate2 z-[99] text-white bottom-20 w-1/2 right-20 opacity-0">
             <h1 class=" maintext">
               Guided steps to a healthier mind.
             </h1>
@@ -51,6 +51,71 @@
               Confidential mental health tracking.
             </h1>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="page3">
+      <div class="box">
+        <div class="boxtext">
+          <h5>1.0</h5>
+          <h4>Identify your mental state.</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class="box">
+        <div class="boxtext">
+          <h5>2.0</h5>
+          <h4>Solutions for stress</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class="box">
+        <div class="boxtext">
+          <h5>3.0</h5>
+          <h4>Check, track, and heal.</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class="box">
+        <div class="boxtext">
+          <h5>4.0</h5>
+          <h4>No hospital vibes, just care.</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class="box">
+        <div class="boxtext">
+          <h5>5.0</h5>
+          <h4>Your mental health matters.</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class="box">
+        <div class="boxtext">
+          <h5>6.0</h5>
+          <h4>Connect, track, and improve.</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
+        </div>
+      </div>
+      <div class="box">
+        <div class="boxtext">
+          <h5>7.0</h5>
+          <h4>Support for students, by students.</h4>
+        </div>
+        <div class="boximg">
+          <img src="" alt="">
         </div>
       </div>
     </div>

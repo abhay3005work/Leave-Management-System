@@ -42,6 +42,7 @@ nav {
   /* background-color: red; */
   padding: 3vw 3vw;
   position: fixed;
+  z-index: 1000;
 }
 
 nav h3 {
@@ -71,4 +72,52 @@ h1.maintext {
   font-size: 3.4vw;
   font-weight: 400;
   white-space: nowrap;
+}
+.page3 {
+  height: 100vh;
+  width: 250vw;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 3.6vw; /* 70px to vw */
+  margin-left: 2.6vw; /* 50px to vw */
+  color: white;
+}
+
+.box {
+  height: 30vw;
+  width: 25vw;
+  /* background-color: aqua; */
+  gap: 1.5vw; /* 30px to vw */
+}
+
+.box:nth-child(1) {
+  /* background-color: red; */
+  margin-left: 20vw; /* Added margin-left for the first box */
+}
+.boxtext {
+  /* background-color: #ff0a0a; */
+  height: 20%;
+  width: 100%;
+  white-space: nowrap;
+}
+.boxtext:nth-child(2) {
+  white-space: normal;
+  line-height: 1;
+}
+
+.boxtext h5 {
+  font-size: 1.5vw;
+}
+.boxtext h4 {
+  font-size: 2vw;
+  padding: 0 -2vw;
+}
+.boximg {
+  background-color: #000;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: end;
 }
