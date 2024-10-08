@@ -85,8 +85,8 @@ h1.maintext {
 }
 
 .box {
-  height: 30vw;
-  width: 25vw;
+  height: 35vw;
+  width: 32vw;
   /* background-color: aqua; */
   gap: 1.5vw; /* 30px to vw */
 }
@@ -120,4 +120,11 @@ h1.maintext {
   display: flex;
   align-items: end;
   justify-content: end;
+}
+.boximg img {
+  height: 90%;
+  /* max-height: 100%; Prevent overflow */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+  object-position: center;
 }

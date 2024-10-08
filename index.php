@@ -61,7 +61,7 @@
           <h4>Identify your mental state.</h4>
         </div>
         <div class="boximg">
-          <img src="" alt="">
+          <img src="./assets/takealongs/images/1.jpg" alt="">
         </div>
       </div>
       <div class="box">
@@ -70,7 +70,7 @@
           <h4>Solutions for stress</h4>
         </div>
         <div class="boximg">
-          <img src="" alt="">
+          <img src="./assets/takealongs/images/2.jpg" alt="">
         </div>
       </div>
       <div class="box">
