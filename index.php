@@ -27,7 +27,7 @@
             <i class="fa-solid fa-music" id="playsong" onclick="songplay()"></i>
           </div>
         </nav>
-        <h1 class="h1text">What is Nuerovista ?</h1>
+        <h1 class="h1text"><span>Learn About </span>Nuerovista</h1>
       </div>
     </div>
 
@@ -55,70 +55,73 @@
       </div>
     </div>
     <div class="page3">
-      <div class="box">
-        <div class="boxtext">
-          <h5>1.0</h5>
-          <h4>Identify your mental state.</h4>
+      <div class="boxes">
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/1.jpg" alt="" />
+          </div>
         </div>
-        <div class="boximg">
-          <img src="./assets/takealongs/images/1.jpg" alt="">
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/2.jpg" alt="" />
+          </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="boxtext">
-          <h5>2.0</h5>
-          <h4>Solutions for stress</h4>
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/3.jpg" alt="" />
+          </div>
         </div>
-        <div class="boximg">
-          <img src="./assets/takealongs/images/2.jpg" alt="">
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/4.jpg" alt="" />
+          </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="boxtext">
-          <h5>3.0</h5>
-          <h4>Check, track, and heal.</h4>
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/5.jpg" alt="" />
+          </div>
         </div>
-        <div class="boximg">
-          <img src="" alt="">
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/6.jpg" alt="" />
+          </div>
         </div>
-      </div>
-      <div class="box">
-        <div class="boxtext">
-          <h5>4.0</h5>
-          <h4>No hospital vibes, just care.</h4>
-        </div>
-        <div class="boximg">
-          <img src="" alt="">
-        </div>
-      </div>
-      <div class="box">
-        <div class="boxtext">
-          <h5>5.0</h5>
-          <h4>Your mental health matters.</h4>
-        </div>
-        <div class="boximg">
-          <img src="" alt="">
-        </div>
-      </div>
-      <div class="box">
-        <div class="boxtext">
-          <h5>6.0</h5>
-          <h4>Connect, track, and improve.</h4>
-        </div>
-        <div class="boximg">
-          <img src="" alt="">
-        </div>
-      </div>
-      <div class="box">
-        <div class="boxtext">
-          <h5>7.0</h5>
-          <h4>Support for students, by students.</h4>
-        </div>
-        <div class="boximg">
-          <img src="" alt="">
+        <div class="box">
+          <div class="boxtitle">
+            <h5>1.0</h5>
+            <h4>Lorem ipsum dolor sit.</h4>
+          </div>
+          <div class="boximg">
+            <img src="./assets/takealongs/images/7.jpg" alt="" />
+          </div>
         </div>
       </div>
     </div>
+    <div class="page4"></div>
 
   </div>
 

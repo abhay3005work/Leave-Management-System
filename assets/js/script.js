@@ -220,3 +220,20 @@ function framescrollanimation() {
 }
 
 framescrollanimation();
+
+function page3animation() {
+  gsap.to(".page3 .box", {
+    transform: "translateX(-230vw)",
+    scrollTrigger: {
+      trigger: ".page3",
+      scroller: "body",
+      // markers: true,
+      start: "top 0",
+      end: "top -150%",
+
+      scrub: 3,
+      pin: true,
+    },
+  });
+}
+page3animation();
