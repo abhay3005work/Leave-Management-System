@@ -27,7 +27,7 @@
             <i class="fa-solid fa-music" id="playsong" onclick="songplay()"></i>
           </div>
         </nav>
-        <h1 class="h1text"><span>Learn About </span>Nuerovista</h1>
+        <h1 class="h1text"><span>Learn About </span>NueroVista.</h1>
       </div>
     </div>
 

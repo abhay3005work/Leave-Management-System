@@ -223,7 +223,7 @@ framescrollanimation();
 
 function page3animation() {
   gsap.to(".page3 .box", {
-    transform: "translateX(-230vw)",
+    transform: "translateX(-700%)",
     scrollTrigger: {
       trigger: ".page3",
       scroller: "body",
