@@ -1,5 +1,3 @@
-console.log("Hello");
-
 function lenisscroll() {
   const lenis = new Lenis();
 
