@@ -212,7 +212,10 @@ function framescrollanimation() {
 
   preloadImages(); // Moved this outside of startAnimation to ensure images load first
 }
-framescrollanimation();
+if (document.getElementById("p1")) {
+  framescrollanimation();
+}
+
 function page3animation() {
   gsap.to(".page3 .box", {
     transform: "translateX(-700%)",
@@ -269,3 +272,13 @@ function Sheryimg() {
   });
 }
 Sheryimg();
+function abtuspage1Animate() {
+  Shery.hoverWithMediaCircle(".hvr", {
+    videos: [
+      "./assets/takealongs/video/1.mp4",
+      "./assets/takealongs/video/2.mp4",
+      "./assets/takealongs/video/3.mp4",
+    ],
+  });
+}
+abtuspage1Animate();

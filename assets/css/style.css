@@ -6,6 +6,10 @@
   font-family: "logo";
   src: url("../fonts/Panchang-Medium.woff2");
 }
+@font-face {
+  font-family: "matter";
+  src: url("../fonts/matter-regular.woff2");
+}
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -38,6 +42,7 @@ body {
 }
 .page1 {
   height: 100vh;
+  background-color: #d9f2eb;
   width: 100%;
 
   position: relative;
@@ -87,7 +92,7 @@ nav h3 {
   font-size: 2vw;
   color: white;
 }
-.page1 h1 {
+h1.h1text {
   position: absolute;
   top: 50%;
   left: 10%;
@@ -158,4 +163,31 @@ h1.maintext {
   width: 70%;
   height: 100%;
   background-color: black;
+}
+.page1 .page1Main {
+  width: 100%;
+  padding: 18vw 14vw;
+}
+.page1Main h1 {
+  font-weight: 500;
+  font-size: 1.6vw;
+  font-family: "matter";
+  letter-spacing: -0.1vw;
+}
+.headings {
+  display: flex;
+  gap: 50px;
+}
+.headings h1 {
+  font-family: "matter";
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  color: transparent;
+  line-height: 1;
+  font-size: 6.8vw;
+  font-weight: 900;
+  letter-spacing: -5px;
+  z-index: 1;
+}
+.headings h1:hover {
+  color: black;
 }
