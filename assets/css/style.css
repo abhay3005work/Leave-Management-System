@@ -6,6 +6,22 @@
   font-family: "logo";
   src: url("../fonts/Panchang-Medium.woff2");
 }
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.685);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+/* scrollbar end */
 * {
   margin: 0;
   padding: 0;
@@ -19,12 +35,11 @@ body {
 }
 body {
   overflow-x: hidden;
-  background-color: #569269;
 }
 .page1 {
   height: 100vh;
   width: 100%;
-  background-color: transparent;
+
   position: relative;
 }
 .page1 video {
@@ -36,10 +51,10 @@ body {
 .page1text {
   height: 100%;
   width: 100%;
-  background-color: rgba(131, 109, 109, 0.411);
+  background-color: rgba(0, 0, 0, 0.445);
   position: relative;
   z-index: 2;
-  color: white;
+  color: black;
 }
 
 nav {
@@ -54,12 +69,17 @@ nav {
 }
 
 nav h3 {
+  display: inline-block; /* Allow movement */
+  transition: color 0.3s ease; /* Smooth color transition */
+  cursor: pointer; /* Change cursor to pointer */
   font-size: 1.5vw;
   font-family: "logo";
+  color: black;
+  font-weight: 600;
 }
 .icon i {
   font-size: 1.5vw;
-
+  color: black;
   cursor: pointer;
 }
 .h1text span {
@@ -77,20 +97,18 @@ nav h3 {
   background-clip: text;
   color: transparent;
 }
-.logo h3 {
-  color: #f2f2f2; /* Initial color */
-  display: inline-block; /* Allow movement */
-  transition: color 0.3s ease; /* Smooth color transition */
-  cursor: pointer; /* Change cursor to pointer */
-}
 h1.maintext {
   font-size: 3.7vw;
   font-weight: 500;
   white-space: nowrap;
 }
+.page2 {
+  background-color: #d9f2eb;
+}
 .page3 {
   min-height: 100vh;
   width: 300vw;
+  background-color: #d9f2eb;
 }
 .boxes {
   display: flex;
@@ -110,7 +128,7 @@ h1.maintext {
   height: 20%;
   width: 100%;
   padding: 1vw;
-  color: white;
+  color: #010101;
 }
 .boxtitle h5 {
   font-size: 1.5vw;
@@ -134,5 +152,10 @@ h1.maintext {
 .page4 {
   min-height: 100vh;
   width: 100%;
-  background-color: aliceblue;
+  background-color: #d9f2eb;
+}
+.left {
+  width: 70%;
+  height: 100%;
+  background-color: black;
 }

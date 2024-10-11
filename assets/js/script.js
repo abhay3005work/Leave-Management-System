@@ -1,5 +1,6 @@
 Shery.mouseFollower({});
 Shery.makeMagnet(".magnet", {});
+
 function lenisscroll() {
   const lenis = new Lenis();
 
@@ -37,7 +38,7 @@ function iconanimate() {
       gsap.to(icon, {
         duration: 0.3,
         scale: 1, // Revert to original scale
-        color: "#fff", // Revert to original color (white)
+        color: "#000", // Revert to original color (white)
         ease: "power1.out",
       });
     }
@@ -60,7 +61,7 @@ function songplay() {
     audio.muted = true; // Mute the audio
 
     // Change icon color back to white when music is stopped
-    gsap.to(icon, { duration: 0.3, color: "#FFFFFF" }); // Apply color change back to white with GSAP
+    gsap.to(icon, { duration: 0.3, color: "#000" }); // Apply color change back to white with GSAP
   }
 }
 //   const logoH3 = document.querySelector(".logo h3");
@@ -228,3 +229,43 @@ function page3animation() {
   });
 }
 page3animation();
+
+function Sheryimg() {
+  Shery.imageEffect(".img", {
+    style: 4,
+    config: {
+      uColor: { value: false },
+      uSpeed: { value: 0.22, range: [0.1, 1], rangep: [1, 10] },
+      uAmplitude: { value: 2.06, range: [0, 5] },
+      uFrequency: { value: 2.52, range: [0, 10] },
+      geoVertex: { range: [1, 64], value: 45.73 },
+      zindex: { value: 1, range: [-9999999, 9999999] },
+      aspect: { value: 1.1486583085890245 },
+      ignoreShapeAspect: { value: true },
+      shapePosition: { value: { x: 0, y: 0 } },
+      shapeScale: { value: { x: 0.5, y: 0.5 } },
+      shapeEdgeSoftness: { value: 0, range: [0, 0.5] },
+      shapeRadius: { value: 0, range: [0, 2] },
+      currentScroll: { value: 0 },
+      scrollLerp: { value: 0.07 },
+      gooey: { value: false },
+      infiniteGooey: { value: false },
+      growSize: { value: 4, range: [1, 15] },
+      durationOut: { value: 1, range: [0.1, 5] },
+      durationIn: { value: 1.5, range: [0.1, 5] },
+      displaceAmount: { value: 0.5 },
+      masker: { value: true },
+      maskVal: { value: 1.21, range: [1, 5] },
+      scrollType: { value: 0 },
+      noEffectGooey: { value: true },
+      onMouse: { value: 1 },
+      noise_speed: { value: 0.2, range: [0, 10] },
+      metaball: { value: 0.2, range: [0, 2] },
+      discard_threshold: { value: 0.5, range: [0, 1] },
+      antialias_threshold: { value: 0.002, range: [0, 0.1] },
+      noise_height: { value: 0.5, range: [0, 2] },
+      noise_scale: { value: 10, range: [0, 100] },
+    },
+  });
+}
+Sheryimg();

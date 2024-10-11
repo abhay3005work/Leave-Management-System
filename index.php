@@ -30,8 +30,7 @@
         <h1 class="h1text"><span>Learn About </span> NueroVista.</h1>
       </div>
     </div>
-
-    <div class="w-full page2  ">
+    <div class="w-full page2">
       <div class="parent relative w-full h-[700vh] ">
         <div class="w-full sticky top-0 left-0 h-screen">
           <canvas class="w-full h-screen" id=" canvas"></canvas>
@@ -62,7 +61,7 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/1.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/1.jpg" alt="" />
           </div>
         </div>
         <div class="box">
@@ -71,7 +70,7 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/2.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/2.jpg" alt="" />
           </div>
         </div>
         <div class="box">
@@ -80,7 +79,7 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/3.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/3.jpg" alt="" />
           </div>
         </div>
         <div class="box">
@@ -89,7 +88,7 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/4.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/4.jpg" alt="" />
           </div>
         </div>
         <div class="box">
@@ -98,7 +97,7 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/5.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/5.jpg" alt="" />
           </div>
         </div>
         <div class="box">
@@ -107,7 +106,7 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/6.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/6.jpg" alt="" />
           </div>
         </div>
         <div class="box">
@@ -116,18 +115,17 @@
             <h4>Lorem ipsum dolor sit.</h4>
           </div>
           <div class="boximg">
-            <img src="./assets/takealongs/images/7.jpg" alt="" />
+            <img class="img" src="./assets/takealongs/images/7.jpg" alt="" />
           </div>
         </div>
       </div>
     </div>
-    <div class="page4"></div>
-
+    <div class="page4">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
   </div>
-
-
   <?php include 'header/footer.php'; ?>
-
 </body>
 
 </html>
