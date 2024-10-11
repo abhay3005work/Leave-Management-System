@@ -1,3 +1,5 @@
+Shery.mouseFollower({});
+Shery.makeMagnet(".magnet", {});
 function lenisscroll() {
   const lenis = new Lenis();
 
@@ -13,7 +15,6 @@ function lenisscroll() {
   requestAnimationFrame(raf);
 }
 lenisscroll();
-
 function iconanimate() {
   const icon = document.querySelector(".icon i");
   let audio = document.querySelector("audio");
@@ -42,9 +43,7 @@ function iconanimate() {
     }
   });
 }
-
 iconanimate();
-
 function songplay() {
   let audio = document.querySelector("audio");
   let icon = document.getElementById("playsong"); // Get the icon by ID
@@ -64,32 +63,29 @@ function songplay() {
     gsap.to(icon, { duration: 0.3, color: "#FFFFFF" }); // Apply color change back to white with GSAP
   }
 }
+//   const logoH3 = document.querySelector(".logo h3");
 
-function logoanimate() {
-  const logoH3 = document.querySelector(".logo h3");
+//   // Hover animation
+//   logoH3.addEventListener("mouseenter", () => {
+//     gsap.to(logoH3, {
+//       duration: 0.1,
+//       scale: 1.1, // Slightly increase the scale for a subtle zoom
+//       color: "#9dac94", // Change the text color (e.g., Tomato)
+//       ease: "power1.out", // Smooth ease-out effect
+//     });
+//   });
 
-  // Hover animation
-  logoH3.addEventListener("mouseenter", () => {
-    gsap.to(logoH3, {
-      duration: 0.1,
-      scale: 1.1, // Slightly increase the scale for a subtle zoom
-      color: "#9dac94", // Change the text color (e.g., Tomato)
-      ease: "power1.out", // Smooth ease-out effect
-    });
-  });
-
-  // Revert animation on mouse leave
-  logoH3.addEventListener("mouseleave", () => {
-    gsap.to(logoH3, {
-      duration: 0.2,
-      scale: 1, // Revert to original scale
-      color: "#fff", // Revert to the original color (adjust as needed)
-      ease: "power1.out",
-    });
-  });
-}
-logoanimate();
-
+//   // Revert animation on mouse leave
+//   logoH3.addEventListener("mouseleave", () => {
+//     gsap.to(logoH3, {
+//       duration: 0.2,
+//       scale: 1, // Revert to original scale
+//       color: "#fff", // Revert to the original color (adjust as needed)
+//       ease: "power1.out",
+//     });
+//   });
+// }
+// logoanimate();
 function page1animation() {
   const page1 = document.querySelector(".page1");
   const h1text = document.querySelector(".page1text h1");
@@ -113,7 +109,6 @@ function page1animation() {
   });
 }
 page1animation();
-
 function framescrollanimation() {
   const canvas = document.querySelector("canvas");
   const context = canvas.getContext("2d");
@@ -216,9 +211,7 @@ function framescrollanimation() {
 
   preloadImages(); // Moved this outside of startAnimation to ensure images load first
 }
-
 framescrollanimation();
-
 function page3animation() {
   gsap.to(".page3 .box", {
     transform: "translateX(-700%)",

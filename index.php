@@ -21,17 +21,17 @@
       <div class="page1text">
         <nav>
           <div class="logo">
-            <h3>NueroVista.</h3>
+            <h3 class="magnet">NueroVista.</h3>
           </div>
           <div class="icon">
-            <i class="fa-solid fa-music" id="playsong" onclick="songplay()"></i>
+            <i class="fa-solid fa-music magnet" id="playsong " onclick="songplay()"></i>
           </div>
         </nav>
-        <h1 class="h1text"><span>Learn About </span>NueroVista.</h1>
+        <h1 class="h1text"><span>Learn About </span> NueroVista.</h1>
       </div>
     </div>
 
-    <div class="w-full page2  bg-zinc-900">
+    <div class="w-full page2  ">
       <div class="parent relative w-full h-[700vh] ">
         <div class="w-full sticky top-0 left-0 h-screen">
           <canvas class="w-full h-screen" id=" canvas"></canvas>
