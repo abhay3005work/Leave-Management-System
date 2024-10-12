@@ -1,72 +1,69 @@
 Shery.mouseFollower({});
 Shery.makeMagnet(".magnet", {});
 
-function animations() {
-  function lenisscroll() {
-    const lenis = new Lenis();
+function lenisscroll() {
+  const lenis = new Lenis();
 
-    lenis.on("scroll", (e) => {
-      console.log(e);
-    });
+  lenis.on("scroll", (e) => {
+    console.log(e);
+  });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
+  function raf(time) {
+    lenis.raf(time);
     requestAnimationFrame(raf);
   }
-  lenisscroll();
-  function iconanimate() {
-    const icon = document.querySelector(".icon i");
-    let audio = document.querySelector("audio");
 
-    icon.addEventListener("mouseenter", () => {
-      // Only apply hover animation if the audio is not playing
-      if (audio.paused) {
-        gsap.to(icon, {
-          duration: 0.3,
-          scale: 1.1, // Slightly increase the scale for a subtle zoom
-          color: "#9dac94", // Change the icon color on hover
-          ease: "power1.out", // Smooth ease-out effect
-        });
-      }
-    });
+  requestAnimationFrame(raf);
+}
+lenisscroll();
+function iconanimate() {
+  const icon = document.querySelector(".icon i");
+  let audio = document.querySelector("audio");
 
-    icon.addEventListener("mouseleave", () => {
-      // Revert to white if music is not playing
-      if (audio.paused) {
-        gsap.to(icon, {
-          duration: 0.3,
-          scale: 1, // Revert to original scale
-          color: "#000", // Revert to original color (white)
-          ease: "power1.out",
-        });
-      }
-    });
-  }
-  iconanimate();
-  function songplay() {
-    let audio = document.querySelector("audio");
-    let icon = document.getElementById("playsong"); // Get the icon by ID
-
+  icon.addEventListener("mouseenter", () => {
+    // Only apply hover animation if the audio is not playing
     if (audio.paused) {
-      audio.muted = false; // Unmute the audio
-      audio.play(); // Play the audio
-      audio.volume = 0.4; // Set volume to 40%
-
-      // Change icon color to indicate music is playing
-      gsap.to(icon, { duration: 0.3, color: "#9dac94" }); // Apply color change with GSAP
-    } else {
-      audio.pause(); // Pause the audio
-      audio.muted = true; // Mute the audio
-
-      // Change icon color back to white when music is stopped
-      gsap.to(icon, { duration: 0.3, color: "#000" }); // Apply color change back to white with GSAP
+      gsap.to(icon, {
+        duration: 0.3,
+        scale: 1.1, // Slightly increase the scale for a subtle zoom
+        color: "#9dac94", // Change the icon color on hover
+        ease: "power1.out", // Smooth ease-out effect
+      });
     }
+  });
+
+  icon.addEventListener("mouseleave", () => {
+    // Revert to white if music is not playing
+    if (audio.paused) {
+      gsap.to(icon, {
+        duration: 0.3,
+        scale: 1, // Revert to original scale
+        color: "#000", // Revert to original color (white)
+        ease: "power1.out",
+      });
+    }
+  });
+}
+iconanimate();
+function songplay() {
+  let audio = document.querySelector("audio");
+  let icon = document.getElementById("playsong"); // Get the icon by ID
+
+  if (audio.paused) {
+    audio.muted = false; // Unmute the audio
+    audio.play(); // Play the audio
+    audio.volume = 0.4; // Set volume to 40%
+
+    // Change icon color to indicate music is playing
+    gsap.to(icon, { duration: 0.3, color: "#9dac94" }); // Apply color change with GSAP
+  } else {
+    audio.pause(); // Pause the audio
+    audio.muted = true; // Mute the audio
+
+    // Change icon color back to white when music is stopped
+    gsap.to(icon, { duration: 0.3, color: "#000" }); // Apply color change back to white with GSAP
   }
 }
-animations();
 
 if (document.getElementById("p1")) {
   function framescrollanimation() {

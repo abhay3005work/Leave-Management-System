@@ -43,7 +43,7 @@ body {
 .page1 {
   height: 100vh;
   width: 100%;
-  background-color: #fff;
+  background-color: #d9f2eb;
   position: relative;
 }
 .page1 video {
@@ -163,13 +163,16 @@ h1.maintext {
   height: 100%;
   background-color: black;
 }
+
+/* ABOUT US PAGE */
 .page1 .page1Main {
+  height: 100%;
   width: 100%;
-  padding: 18vw 14vw;
+  padding: 18vw 14vw 18vw;
 }
 .page1Main h1 {
   font-weight: 500;
-  font-size: 1.6vw;
+  font-size: 2vw;
   font-family: "matter";
   letter-spacing: -0.1vw;
 }
@@ -184,9 +187,45 @@ h1.maintext {
   line-height: 1;
   font-size: 6.8vw;
   font-weight: 900;
-  letter-spacing: -5px;
+  letter-spacing: -3.5px;
   z-index: 1;
 }
 .headings h1:hover {
   color: rgb(0, 0, 0);
 }
+.content {
+  height: 45%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vw 0vw;
+  background-color: #d9f2eb;
+}
+.content p {
+  width: 30%;
+  font-family: "matter";
+  font-size: 1.9vw;
+  letter-spacing: -0.5px;
+  line-height: 1.5;
+  text-align: center;
+  padding: 1vw 3vw 1vw 0vw;
+}
+.content p#pright {
+  padding: 1vw 0vw 1vw 3vw;
+}
+.content .imageWrapper {
+  height: 100%;
+  width: 70%;
+  padding: 1vw 1.9vw;
+  /* background-color: red; */
+}
+.content img {
+  /* padding: 2vw; */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3%;
+}
+/* ABOUT US PAGE ENDDDD */

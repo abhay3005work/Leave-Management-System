@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @font-face {
+        font-family: "MyFont";
+        src: url("");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "MyFont";
+      }
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+      .content {
+        height: 45%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3vw 0vw;
+      }
+      .content p {
+        width: 30%;
+        font-family: "matter";
+        font-size: 1.9vw;
+        letter-spacing: -0.5px;
+        line-height: 1.5;
+        text-align: center;
+        padding: 1vw 3vw 1vw 0vw;
+      }
+      .content p#pright {
+        padding: 1vw 0vw 1vw 3vw;
+      }
+      .content .imageWrapper {
+        height: 100%;
+        width: 70%;
+        padding: 1vw 1.9vw;
+        /* background-color: red; */
+      }
+      .content img {
+        /* padding: 2vw; */
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 3%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="imageWrapper">
+        <img src="./assets/takealongs/images/text1-3.jpg" alt="" />
+      </div>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non</p>
+    </div>
+    <div class="content">
+      <p id="pright">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non
+      </p>
+      <div class="imageWrapper">
+        <img src="./assets/takealongs/images/text1.jpg" alt="" />
+      </div>
+    </div>
+    <div class="content">
+      <div class="imageWrapper">
+        <img src="./assets/takealongs/images/test3.jpg" alt="" />
+      </div>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non</p>
+    </div>
+  </body>
+</html>

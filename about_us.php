@@ -29,6 +29,44 @@
                     <h1 class="hvr">Heal.</h1>
                 </div>
             </div>
+            <div class="content">
+                <div class="imageWrapper">
+                    <img src="./assets/takealongs/images/text1-3.jpg" alt="" />
+                </div>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non</p>
+            </div>
+            <div class="content">
+                <p id="pright">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non
+                </p>
+                <div class="imageWrapper">
+                    <img src="./assets/takealongs/images/text1.jpg" alt="" />
+                </div>
+            </div>
+            <div class="content">
+                <div class="imageWrapper">
+                    <img src="./assets/takealongs/images/test3.jpg" alt="" />
+                </div>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non</p>
+            </div>
+            <div class="content">
+                <p id="pright">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non
+                </p>
+                <div class="imageWrapper">
+                    <img src="./assets/takealongs/images/text1.jpg" alt="" />
+                </div>
+            </div>
+            <div class="content">
+                <div class="imageWrapper">
+                    <img src="./assets/takealongs/images/test3.jpg" alt="" />
+                </div>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero non</p>
+            </div>
+
 
         </div>
     </div>
