@@ -42,9 +42,8 @@ body {
 }
 .page1 {
   height: 100vh;
-  background-color: #d9f2eb;
   width: 100%;
-
+  background-color: #fff;
   position: relative;
 }
 .page1 video {
@@ -176,7 +175,7 @@ h1.maintext {
 }
 .headings {
   display: flex;
-  gap: 50px;
+  gap: 3vw;
 }
 .headings h1 {
   font-family: "matter";
@@ -189,5 +188,5 @@ h1.maintext {
   z-index: 1;
 }
 .headings h1:hover {
-  color: black;
+  color: rgb(0, 0, 0);
 }

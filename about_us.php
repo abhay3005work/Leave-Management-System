@@ -9,7 +9,7 @@
 
 </head>
 
-<body id="2">
+<body id="p2">
     <audio autoplay muted loop src="./assets/takealongs/audio/in-y2mate.com - AUR  TU HAI KAHAN  Raffey  Usama  Ahad Official Music Video.mp3"></audio>
     <div class="main">
         <div class="page1">
@@ -29,6 +29,7 @@
                     <h1 class="hvr">Heal.</h1>
                 </div>
             </div>
+
         </div>
     </div>
     <?php include 'header/footer.php'; ?>
