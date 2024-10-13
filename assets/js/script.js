@@ -1,6 +1,12 @@
 Shery.mouseFollower({});
 Shery.makeMagnet(".magnet", {});
-
+function loaderAnimation() {
+  var loader = document.querySelector("#loader");
+  setTimeout(function () {
+    loader.style.top = "-100%";
+  }, 4200);
+}
+loaderAnimation();
 function lenisscroll() {
   const lenis = new Lenis();
 
@@ -251,6 +257,35 @@ if (document.getElementById("p1")) {
 
 if (document.getElementById("p2")) {
   Shery.hoverWithMediaCircle(".hvr", {
-    images: ["./assets/takealongs/images/test4.jpg"],
+    images: [
+      "./assets/takealongs/images/hover2.jpg",
+      "./assets/takealongs/images/hover3.jpg",
+      "./assets/takealongs/images/hover4.jpg",
+    ],
   });
+
+  function navAnimation() {
+    let page2 = document.querySelector("#page2");
+    gsap.to("nav h3", {
+      color: "black",
+      scrollTrigger: {
+        trigger: "page2",
+        scroller: "body",
+        start: "top top",
+        onEnter: () => gsap.to("nav h3", { color: "black" }),
+        onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
+      },
+    });
+    gsap.to("nav i", {
+      color: "black",
+      scrollTrigger: {
+        trigger: "page2",
+        scroller: "body",
+        start: "top top",
+        onEnter: () => gsap.to("nav h3", { color: "black" }),
+        onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
+      },
+    });
+  }
+  navAnimation();
 }

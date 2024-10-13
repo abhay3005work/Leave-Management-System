@@ -43,7 +43,7 @@ body {
 .page1 {
   height: 100vh;
   width: 100%;
-  background-color: #d9f2eb;
+  background-color: #b8f3e2;
   position: relative;
 }
 .page1 video {
@@ -163,12 +163,65 @@ h1.maintext {
   height: 100%;
   background-color: black;
 }
+#loader {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  transition: all ease 0.7s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loader h1 {
+  font-size: 4vw;
+  color: transparent;
+  background: linear-gradient(to right, orange, orangered);
+  -webkit-background-clip: text;
+  background-clip: text;
+  position: absolute;
+  opacity: 0;
+  animation-name: load;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-timing-function: linear;
+}
+#loader h1:nth-child(2) {
+  animation-delay: 2s;
+}
+#loader h1:nth-child(3) {
+  animation-delay: 3s;
+}
+@keyframes load {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  #loader h1 {
+    font-size: 9vw;
+  }
+}
 
 /* ABOUT US PAGE */
 .page1 .page1Main {
   height: 100%;
   width: 100%;
-  padding: 18vw 14vw 18vw;
+  padding: 18vw 8.5vw 18vw;
+  color: white;
 }
 .page1Main h1 {
   font-weight: 500;
@@ -178,54 +231,21 @@ h1.maintext {
 }
 .headings {
   display: flex;
-  gap: 3vw;
+  gap: 1vw;
 }
 .headings h1 {
   font-family: "matter";
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  -webkit-text-stroke: 0.1px rgb(255, 255, 255);
   color: transparent;
   line-height: 1;
-  font-size: 6.8vw;
+  font-size: 8vw;
   font-weight: 900;
   letter-spacing: -3.5px;
   z-index: 1;
+  transition: all 0.5s;
 }
 .headings h1:hover {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
-.content {
-  height: 45%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3vw 0vw;
-  background-color: #d9f2eb;
-}
-.content p {
-  width: 30%;
-  font-family: "matter";
-  font-size: 1.9vw;
-  letter-spacing: -0.5px;
-  line-height: 1.5;
-  text-align: center;
-  padding: 1vw 3vw 1vw 0vw;
-}
-.content p#pright {
-  padding: 1vw 0vw 1vw 3vw;
-}
-.content .imageWrapper {
-  height: 100%;
-  width: 70%;
-  padding: 1vw 1.9vw;
-  /* background-color: red; */
-}
-.content img {
-  /* padding: 2vw; */
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 3%;
-}
+
 /* ABOUT US PAGE ENDDDD */
