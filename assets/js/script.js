@@ -1,12 +1,6 @@
 Shery.mouseFollower({});
 Shery.makeMagnet(".magnet", {});
-function loaderAnimation() {
-  var loader = document.querySelector("#loader");
-  setTimeout(function () {
-    loader.style.top = "-100%";
-  }, 4200);
-}
-loaderAnimation();
+
 function lenisscroll() {
   const lenis = new Lenis();
 
@@ -72,6 +66,17 @@ function songplay() {
 }
 
 if (document.getElementById("p1")) {
+  let page2 = document.querySelector(".page2");
+  gsap.to(".navLinks a", {
+    color: "black",
+    scrollTrigger: {
+      trigger: "page2",
+      scroller: "body",
+      start: "top top",
+      onEnter: () => gsap.to(".navLinks a", { color: "black" }),
+      onLeaveBack: () => gsap.to(".navLinks a", { color: "white" }),
+    },
+  });
   function framescrollanimation() {
     const canvas = document.querySelector("canvas");
     const context = canvas.getContext("2d");
@@ -253,6 +258,13 @@ if (document.getElementById("p1")) {
     });
   }
   Sheryimg();
+  function loaderAnimation() {
+    var loader = document.querySelector("#loader");
+    setTimeout(function () {
+      loader.style.top = "-100%";
+    }, 4200);
+  }
+  loaderAnimation();
 }
 
 if (document.getElementById("p2")) {
@@ -276,14 +288,14 @@ if (document.getElementById("p2")) {
         onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
       },
     });
-    gsap.to("nav i", {
+    gsap.to(".icon i", {
       color: "black",
       scrollTrigger: {
         trigger: "page2",
         scroller: "body",
         start: "top top",
-        onEnter: () => gsap.to("nav h3", { color: "black" }),
-        onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
+        onEnter: () => gsap.to(".icon i", { color: "black" }),
+        onLeaveBack: () => gsap.to(".icon i", { color: "white" }),
       },
     });
   }

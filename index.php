@@ -10,12 +10,12 @@
 </head>
 
 <body id="p1">
-  <div id="loader">
+  <!-- <div id="loader">
     <h1>ENVIRONMENTS</h1>
     <h1>EXPERIENCES</h1>
     <h1>CONTENT</h1>
-  </div>
-  <audio autoplay muted loop src="./assets/takealongs/audio/in-y2mate.com - AUR  TU HAI KAHAN  Raffey  Usama  Ahad Official Music Video.mp3"></audio>
+  </div> -->
+  <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
   <div class="main">
     <div class="page1">
       <video
@@ -28,11 +28,12 @@
           <div class="logo">
             <h3 class="magnet">NueroVista.</h3>
           </div>
-          <a href="./about_us.php">Welcome</a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
-          <a href=""></a>
+          <div class="navLinks magnet">
+            <a href="#">Quiz</a>
+            <a href="#">Resources</a>
+            <a href="./about_us.php">About Us</a>
+          </div>
+
           <div class="icon">
             <i class="fa-solid fa-music magnet" id="playsong " onclick="songplay()"></i>
           </div>
