@@ -30,7 +30,7 @@
           </div>
           <div class="navLinks magnet">
             <a href="#">Quiz</a>
-            <a href="#">Resources</a>
+            <a href="./funseg.php">Resources</a>
             <a href="./about_us.php">About Us</a>
           </div>
 

@@ -64,7 +64,30 @@ function songplay() {
     gsap.to(icon, { duration: 0.3, color: "#000" }); // Apply color change back to white with GSAP
   }
 }
-
+function navAnimation() {
+  let page2 = document.querySelector("#page2");
+  gsap.to("nav h3", {
+    color: "black",
+    scrollTrigger: {
+      trigger: "page2",
+      scroller: "body",
+      start: "top top",
+      onEnter: () => gsap.to("nav h3", { color: "black" }),
+      onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
+    },
+  });
+  gsap.to(".icon i", {
+    color: "black",
+    scrollTrigger: {
+      trigger: "page2",
+      scroller: "body",
+      start: "top top",
+      onEnter: () => gsap.to(".icon i", { color: "black" }),
+      onLeaveBack: () => gsap.to(".icon i", { color: "white" }),
+    },
+  });
+}
+navAnimation();
 if (document.getElementById("p1")) {
   let page2 = document.querySelector(".page2");
   gsap.to(".navLinks a", {
@@ -275,29 +298,70 @@ if (document.getElementById("p2")) {
       "./assets/takealongs/images/hover4.jpg",
     ],
   });
+}
 
-  function navAnimation() {
-    let page2 = document.querySelector("#page2");
-    gsap.to("nav h3", {
-      color: "black",
-      scrollTrigger: {
-        trigger: "page2",
-        scroller: "body",
-        start: "top top",
-        onEnter: () => gsap.to("nav h3", { color: "black" }),
-        onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
-      },
-    });
-    gsap.to(".icon i", {
-      color: "black",
-      scrollTrigger: {
-        trigger: "page2",
-        scroller: "body",
-        start: "top top",
-        onEnter: () => gsap.to(".icon i", { color: "black" }),
-        onLeaveBack: () => gsap.to(".icon i", { color: "white" }),
-      },
+if (document.getElementById("p3")) {
+  function funsegmentpage() {
+    let thumbnails = document.querySelectorAll(".thumbnail");
+
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("mouseenter", function () {
+        const title = thumbnail.querySelector(".thumbnailTitle h3");
+        gsap.to(title, {
+          duration: 0.4,
+          color: "wheat",
+        });
+      });
+
+      thumbnail.addEventListener("mouseleave", function () {
+        const title = thumbnail.querySelector(".thumbnailTitle h3");
+        gsap.to(title, {
+          duration: 0.4,
+          color: "white",
+        });
+      });
     });
   }
-  navAnimation();
+
+  funsegmentpage();
+  function sherryJsFunSeg() {
+    Shery.imageEffect(".thumbnailImage img", {
+      style: 4,
+      config: {
+        uColor: { value: true },
+        uSpeed: { value: 0.35, range: [0.1, 1], rangep: [1, 10] },
+        uAmplitude: { value: 1.91, range: [0, 5] },
+        uFrequency: { value: 3.5, range: [0, 10] },
+        geoVertex: { range: [1, 64], value: 5.81 },
+        zindex: { value: "11", range: [-9999999, 9999999] },
+        aspect: { value: 1.180190422054853 },
+        ignoreShapeAspect: { value: true },
+        shapePosition: { value: { x: 0, y: 0 } },
+        shapeScale: { value: { x: 0.5, y: 0.5 } },
+        shapeEdgeSoftness: { value: 0, range: [0, 0.5] },
+        shapeRadius: { value: 0, range: [0, 2] },
+        currentScroll: { value: 0 },
+        scrollLerp: { value: 0.07 },
+        gooey: { value: false },
+        infiniteGooey: { value: false },
+        growSize: { value: 4, range: [1, 15] },
+        durationOut: { value: 1, range: [0.1, 5] },
+        durationIn: { value: 1.5, range: [0.1, 5] },
+        displaceAmount: { value: 0.5 },
+        masker: { value: true },
+        maskVal: { value: 1.03, range: [1, 5] },
+        scrollType: { value: 0 },
+        noEffectGooey: { value: true },
+        onMouse: { value: 1 },
+        noise_speed: { value: 0.2, range: [0, 10] },
+        metaball: { value: 0.2, range: [0, 2] },
+        discard_threshold: { value: 0.5, range: [0, 1] },
+        antialias_threshold: { value: 0.002, range: [0, 0.1] },
+        noise_height: { value: 0.5, range: [0, 2] },
+        noise_scale: { value: 10, range: [0, 100] },
+      },
+      // debug: true,
+    });
+  }
+  sherryJsFunSeg();
 }
