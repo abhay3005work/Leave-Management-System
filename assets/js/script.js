@@ -288,6 +288,37 @@ if (document.getElementById("p1")) {
     }, 4200);
   }
   loaderAnimation();
+  function eyes() {
+    const eyes = document.querySelectorAll(".eye");
+    const pupils = document.querySelectorAll(".eyePupil");
+
+    document.addEventListener("mousemove", (event) => {
+      const { clientX, clientY } = event;
+      eyes.forEach((eye, index) => {
+        const rect = eye.getBoundingClientRect();
+        const eyeCenterX = rect.left + rect.width / 2;
+        const eyeCenterY = rect.top + rect.height / 2;
+
+        const deltaX = clientX - eyeCenterX;
+        const deltaY = clientY - eyeCenterY;
+        const angle = Math.atan2(deltaY, deltaX);
+        const distance = Math.min(
+          eye.offsetWidth / 4,
+          Math.sqrt(deltaX ** 2 + deltaY ** 2)
+        ); // Limit pupil movement
+
+        const pupilX = Math.cos(angle) * distance;
+        const pupilY = Math.sin(angle) * distance;
+
+        gsap.to(pupils[index], {
+          x: pupilX,
+          y: pupilY,
+          duration: 0.4,
+        });
+      });
+    });
+  }
+  eyes();
 }
 
 if (document.getElementById("p2")) {

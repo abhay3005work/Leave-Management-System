@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
     <style>
       @font-face {
         font-family: "MyFont";
-        src: url("./assets/fonts/Panchang-Medium.woff2");
+        src: url("");
       }
       * {
         margin: 0;
@@ -20,37 +21,90 @@
         height: 100%;
         width: 100%;
       }
-      .main {
+      main {
         height: 100%;
         width: 100%;
       }
-      .thumbnailPage {
-        min-height: 100vh;
+      .page4 {
+        height: 100vh;
         width: 100%;
-        padding: 8vh;
+        background-color: red;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
       }
-      .thumbnailPage h1 {
-        font-size: 4vw;
-        font-weight: 200;
+      .page4Content {
+        display: flex;
+        gap: 20px;
       }
-      .thumbnailPage h3 {
-        position: absolute;
-        left: 4vw;
-        top: 10vw;
+      .eye {
+        height: 7vw;
+        width: 7vw;
+        background-color: antiquewhite;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative; /* Added for absolute positioning of the pupil */
       }
-      .thumbnail {
-        width: 100%;
-        height: 25vw;
-        background-color: blue;
-        margin: 2vw 0;
+      .eyePupil {
+        height: 2vw;
+        width: 2vw;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute; /* Changed to absolute for proper movement */
+        transition: transform 0.1s; /* Smooth transition */
       }
     </style>
   </head>
   <body>
-    <div class="main"></div>
+    <div class="main">
+      <div class="page4">
+        <div class="page4Content">
+          <div class="eye">
+            <div class="eyePupil"></div>
+          </div>
+          <div class="eye">
+            <div class="eyePupil"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+    <script src="https://unpkg.com/sheryjs/dist/Shery.js"></script>
+    <script>
+      const eyes = document.querySelectorAll(".eye");
+      const pupils = document.querySelectorAll(".eyePupil");
+
+      document.addEventListener("mousemove", (event) => {
+        const { clientX, clientY } = event;
+        eyes.forEach((eye, index) => {
+          const rect = eye.getBoundingClientRect();
+          const eyeCenterX = rect.left + rect.width / 2;
+          const eyeCenterY = rect.top + rect.height / 2;
+
+          const deltaX = clientX - eyeCenterX;
+          const deltaY = clientY - eyeCenterY;
+          const angle = Math.atan2(deltaY, deltaX);
+          const distance = Math.min(
+            eye.offsetWidth / 4,
+            Math.sqrt(deltaX ** 2 + deltaY ** 2)
+          ); // Limit pupil movement
+
+          const pupilX = Math.cos(angle) * distance;
+          const pupilY = Math.sin(angle) * distance;
+
+          gsap.to(pupils[index], {
+            x: pupilX,
+            y: pupilY,
+            duration: 0.4,
+          });
+        });
+      });
+    </script>
   </body>
 </html>

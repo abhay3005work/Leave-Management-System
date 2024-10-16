@@ -10,14 +10,9 @@
 </head>
 
 <body id="p1">
-  <!-- <div id="loader">
-    <h1>ENVIRONMENTS</h1>
-    <h1>EXPERIENCES</h1>
-    <h1>CONTENT</h1>
-  </div> -->
   <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
   <div class="main">
-    <div class="page1">
+    <div class="page1 h-screen w-full">
       <video
         autoplay
         muted
@@ -131,9 +126,22 @@
         </div>
       </div>
     </div>
-    <div class="page4">
-      <div class="left"></div>
-      <div class="right"></div>
+    <div class="page4" id="page4">
+
+      <h1>Check ME</h1>
+      <div class="page4Content">
+
+        <div class="eye">
+          <div class="eyePupil"></div>
+        </div>
+        <h2>OUT</h2>
+        <div class="eye">
+          <div class="eyePupil"></div>
+        </div>
+      </div>
+      <button><a href="./funseg.php"> Playground</a>
+      </button>
+
     </div>
   </div>
   <?php include 'header/footer.php'; ?>
