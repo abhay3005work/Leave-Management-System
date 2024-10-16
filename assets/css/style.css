@@ -353,7 +353,10 @@ h1.maintext {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #d9f2eb;
+  background-image: url("../takealongs/images/page4bg5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
   flex-direction: column;
   position: relative;
 }
@@ -371,7 +374,7 @@ h1.maintext {
   font-size: 4vw;
   font-weight: 900;
   font-family: "logo";
-  letter-spacing: -2px;
+  letter-spacing: -7px;
   padding-bottom: 1.5vw;
 }
 .eye {
@@ -423,3 +426,9 @@ button:hover::before {
   width: 9em;
 }
 /* page4 index.php ENDS*/
+/* PAGE 5 ALONG WITH FOOTER STARTS */
+.page5 {
+  min-height: 100vh;
+  width: 100%;
+}
+/* PAGE 5 ALONG WITH FOOTER ENDS */

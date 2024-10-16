@@ -13,6 +13,9 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
