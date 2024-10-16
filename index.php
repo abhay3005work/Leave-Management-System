@@ -52,7 +52,7 @@
           </div>
           <div
             class="absolute animate3 z-[99] text-black bottom-20 w-1/2 left-20 opacity-0">
-            <h1 class="maintext">
+            <h1 class=" maintext">
               Confidential mental health tracking.
             </h1>
           </div>
