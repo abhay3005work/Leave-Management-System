@@ -126,23 +126,28 @@
         </div>
       </div>
     </div>
-    <div class="page4" id="page4">
-
-      <h1>Check ME</h1>
-      <div class="page4Content">
-
-        <div class="eye">
-          <div class="eyePupil"></div>
+    <div class="page4 bg-zinc-100 relative h-screen flex flex-col items-center justify-center">
+      <div class="eye-container flex gap-32" id="eyeContainer">
+        <div class="eye w-48 h-48 bg-white rounded-full flex items-center justify-center relative">
+          <div class="eyePupil w-24 h-24 bg-black rounded-full absolute"></div>
+          <div class="eyelid w-48 h-48 bg-zinc-100 rounded-full absolute transform origin-top transition-transform duration-200"></div>
         </div>
-        <h2>OUT</h2>
-        <div class="eye">
-          <div class="eyePupil"></div>
+        <div class="eye w-48 h-48 bg-white rounded-full flex items-center justify-center relative">
+          <div class="eyePupil w-24 h-24 bg-black rounded-full absolute"></div>
+          <div class="eyelid w-48 h-48 bg-zinc-100 rounded-full absolute transform origin-top transition-transform duration-200"></div>
         </div>
       </div>
-      <button><a href="./funseg.php"> Playground</a>
-      </button>
-
+      <a href="funseg.php" class="fun-btn mt-12 px-8 py-4 bg-blue-500 text-white rounded-lg"
+        onmouseenter="
+          gsap.to(this, {scale: 1.2, y: -10, boxShadow: '0 20px 30px rgba(0,0,0,0.2)', backgroundColor: '#9333ea', duration: 0.5, ease: 'elastic.out(1, 0.3)'});
+        "
+        onmouseleave="
+          gsap.to(this, {scale: 1, y: 0, boxShadow: '0 0 0 rgba(0,0,0,0)', backgroundColor: '#3b82f6', duration: 0.3, ease: 'power3.out'});
+        ">
+        Visit Fun Segment
+      </a>
     </div>
+
     <div class="page5 bg-zinc-200">
 
     </div>

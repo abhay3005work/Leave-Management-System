@@ -288,7 +288,7 @@ if (document.getElementById("p1")) {
     }, 4200);
   }
   loaderAnimation();
-  function eyes() {
+  function eyeMovement() {
     const eyes = document.querySelectorAll(".eye");
     const pupils = document.querySelectorAll(".eyePupil");
 
@@ -305,7 +305,7 @@ if (document.getElementById("p1")) {
         const distance = Math.min(
           eye.offsetWidth / 4,
           Math.sqrt(deltaX ** 2 + deltaY ** 2)
-        ); // Limit pupil movement
+        );
 
         const pupilX = Math.cos(angle) * distance;
         const pupilY = Math.sin(angle) * distance;
@@ -318,7 +318,24 @@ if (document.getElementById("p1")) {
       });
     });
   }
-  eyes();
+  eyeMovement();
+  const funBtn = document.querySelector(".fun-btn");
+  const eyelids = document.querySelectorAll(".eyelid");
+
+  funBtn.addEventListener("mouseenter", () => {
+    eyelids.forEach((eyelid) => {
+      eyelid.style.transform = "scaleY(1)";
+      setTimeout(() => {
+        eyelid.style.transform = "scaleY(0)";
+      }, 200);
+    });
+  });
+
+  funBtn.addEventListener("mouseleave", () => {
+    eyelids.forEach((eyelid) => {
+      eyelid.style.transform = "scaleY(0)";
+    });
+  });
 }
 
 if (document.getElementById("p2")) {
@@ -328,6 +345,52 @@ if (document.getElementById("p2")) {
       "./assets/takealongs/images/hover3.jpg",
       "./assets/takealongs/images/hover4.jpg",
     ],
+  });
+
+  const swiper = new Swiper(".reviewSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 1,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 1,
+        spaceBetween: 40,
+      },
+    },
+    effect: "fade",
+    fadeEffect: {
+      crossFade: true,
+    },
+    speed: 1000,
+    on: {
+      init: function () {
+        console.log("Review slider initialized");
+      },
+      error: function (error) {
+        console.error("Review slider error:", error);
+      },
+    },
   });
 }
 
@@ -395,4 +458,52 @@ if (document.getElementById("p3")) {
     });
   }
   sherryJsFunSeg();
+
+  // Weather API
+  async function getWeather() {
+    const city = document.getElementById("city-input").value;
+    const apiKey = "YOUR_OPENWEATHER_API_KEY"; // Replace with your API key
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+      );
+      const data = await response.json();
+      document.getElementById("weather-info").innerHTML = `
+                                <p>Temperature: ${data.main.temp}°C</p>
+                                <p>Weather: ${data.weather[0].main}</p>
+                                <p>Humidity: ${data.main.humidity}%</p>
+                            `;
+    } catch (error) {
+      console.error("Error fetching weather:", error);
+    }
+  }
+
+  // Quote API
+  async function getRandomQuote() {
+    try {
+      const response = await fetch("https://api.quotable.io/random");
+      const data = await response.json();
+      document.getElementById("quote-text").textContent = `"${data.content}"`;
+      document.getElementById("quote-author").textContent = `- ${data.author}`;
+    } catch (error) {
+      console.error("Error fetching quote:", error);
+    }
+  }
+
+  // Cat API
+  async function getRandomCat() {
+    try {
+      const response = await fetch(
+        "https://api.thecatapi.com/v1/images/search"
+      );
+      const data = await response.json();
+      document.getElementById("cat-image").src = data[0].url;
+    } catch (error) {
+      console.error("Error fetching cat image:", error);
+    }
+  }
+
+  // Initial load
+  getRandomQuote();
+  getRandomCat();
 }

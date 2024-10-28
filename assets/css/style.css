@@ -345,86 +345,41 @@ h1.maintext {
   height: 80%;
   width: 100%;
 }
-/* FUN SEGMENT PAGE ENDS */
-/* page4 index.php */
-#page4 {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url("../takealongs/images/page4bg5.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  object-fit: cover;
-  flex-direction: column;
-  position: relative;
-}
-#page4 h1 {
-  font-size: 4vw;
-  font-weight: 100;
-  letter-spacing: -2px;
-  padding-bottom: 5vw;
-}
-.page4Content {
-  display: flex;
-  gap: 20px;
-}
-.page4Content h2 {
-  font-size: 4vw;
-  font-weight: 900;
-  font-family: "logo";
-  letter-spacing: -7px;
-  padding-bottom: 1.5vw;
-}
-.eye {
-  height: 7vw;
-  width: 7vw;
-  background-color: antiquewhite;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative; /* Added for absolute positioning of the pupil */
-}
-.eyePupil {
-  height: 2vw;
-  width: 2vw;
-  background-color: black;
-  border-radius: 50%;
-  position: absolute; /* Changed to absolute for proper movement */
-  transition: transform 0.1s; /* Smooth transition */
-}
-#page4 button {
-  width: 9em;
-  height: 3em;
-  border-radius: 30em;
-  font-size: 1.8;
-  font-family: inherit;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
-  background-color: rgb(240, 230, 217);
-}
-button::before {
-  content: "";
-  width: 0;
-  height: 3em;
-  border-radius: 30em;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
-  transition: 0.5s ease;
-  display: block;
-  z-index: -1;
+#gradient-canvas {
+  background: linear-gradient(45deg, #000000, #1a1a1a, #2d2d2d);
 }
 
-button:hover::before {
-  width: 9em;
+.floating-elements {
+  position: relative;
+  height: 300px;
 }
+
+.floating-circle,
+.floating-square,
+.floating-triangle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.floating-circle {
+  border-radius: 50%;
+  left: 20%;
+}
+
+.floating-square {
+  right: 20%;
+}
+
+.floating-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  left: 50%;
+}
+/* FUN SEGMENT PAGE ENDS */
+/* page4 index.php */
+
 /* page4 index.php ENDS*/
 /* PAGE 5 ALONG WITH FOOTER STARTS */
 .page5 {
