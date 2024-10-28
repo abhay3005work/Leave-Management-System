@@ -1,3 +1,4 @@
+/* Font faces */
 @font-face {
   font-family: "MyFont";
   src: url("../fonts/NyghtSerif-Regular.woff2");
@@ -10,48 +11,162 @@
   font-family: "matter";
   src: url("../fonts/matter-regular.woff2");
 }
-/* scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.685);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
-/* scrollbar end */
+
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "MyFont";
 }
+
 html,
 body {
   height: 100%;
   width: 100%;
 }
+
 body {
   overflow-x: hidden;
 }
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.685);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+/* Loader styles */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 0.5s ease;
+}
+
+.loader-wrapper.slide-up {
+  transform: translateY(-100%);
+}
+
+.loader {
+  display: flex;
+  font-family: "logo", sans-serif;
+  font-size: 3.5vw;
+}
+
+.loader-text {
+  display: flex;
+}
+
+.loader-text span {
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 2s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loader-text .fade-up:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.loader-text .fade-up:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 3vw 3vw;
+  position: fixed;
+  z-index: 1000;
+}
+
+nav h3 {
+  display: inline-block;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  font-size: 1.5vw;
+  font-family: "logo";
+  color: black;
+  font-weight: 600;
+}
+
+.navLinks {
+  height: 100%;
+  display: flex;
+  gap: 30px;
+}
+
+.navLinks a {
+  font-family: "logo";
+  font-size: 1.1vw;
+  font-weight: 200;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.icon i {
+  display: inline-block;
+  font-size: 1.5vw;
+  color: black;
+  cursor: pointer;
+}
+
+/* Page layouts */
+.page1,
+.page2,
+.page3,
+.page5 {
+  width: 100%;
+}
+
 .page1 {
   height: 100vh;
-  width: 100%;
   background-color: #b8f3e2;
   position: relative;
 }
-.page1 video {
+
+.page1 video,
+.page1 img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   position: absolute;
 }
+
 .page1text {
   height: 100%;
   width: 100%;
@@ -61,49 +176,28 @@ body {
   color: black;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  /* background-color: red; */
-  padding: 3vw 3vw;
-  position: fixed;
-  z-index: 1000;
+.page2 {
+  height: 100%;
+  background-color: #d9f2eb;
 }
 
-nav h3 {
-  display: inline-block; /* Allow movement */
-  transition: color 0.3s ease; /* Smooth color transition */
-  cursor: pointer; /* Change cursor to pointer */
-  font-size: 1.5vw;
-  font-family: "logo";
-  color: black;
-  font-weight: 600;
+.page3 {
+  min-height: 100vh;
+  width: 300vw;
+  background-color: #d9f2eb;
 }
-.navLinks {
-  height: 100%;
-  display: flex;
-  gap: 30px;
+
+.page5 {
+  min-height: 100vh;
 }
-.navLinks a {
-  font-family: "logo";
-  font-size: 1.1vw;
-  font-weight: 200;
-  color: white;
-  letter-spacing: -0.5px;
-}
-.icon i {
-  display: inline-block; /* Allow movement */
-  font-size: 1.5vw;
-  color: black;
-  cursor: pointer;
-}
+
+/* Text styles */
 .h1text span {
   margin-right: 1.5vw;
   font-size: 2vw;
   color: white;
 }
+
 h1.h1text {
   position: absolute;
   top: 50%;
@@ -114,19 +208,14 @@ h1.h1text {
   background-clip: text;
   color: transparent;
 }
+
 h1.maintext {
   font-size: 3.7vw;
   font-weight: 500;
   white-space: nowrap;
 }
-.page2 {
-  background-color: #d9f2eb;
-}
-.page3 {
-  min-height: 100vh;
-  width: 300vw;
-  background-color: #d9f2eb;
-}
+
+/* Boxes section */
 .boxes {
   display: flex;
   justify-content: flex-start;
@@ -136,22 +225,25 @@ h1.maintext {
   padding-left: 37vw;
   gap: 30px;
 }
+
 .box {
   height: 37vw;
   width: 34vw;
-  /* background-color: red; */
 }
+
 .boxtitle {
   height: 20%;
   width: 100%;
   padding: 0vw 1vw;
   color: #000000;
 }
+
 .boxtitle h5 {
   font-size: 1.5vw;
   font-weight: 300;
   font-family: "matter";
 }
+
 .boxtitle h4 {
   font-size: 2.6vw;
   padding-left: 1vw;
@@ -160,89 +252,39 @@ h1.maintext {
   line-height: 1;
   letter-spacing: -0.4px;
 }
+
 .boximg {
   height: 80%;
   width: 100%;
 }
+
 .boximg img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
 }
-#loader {
-  height: 100%;
-  width: 100%;
-  background-color: #000;
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  transition: all ease 0.7s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-#loader h1 {
-  font-size: 4vw;
-  color: transparent;
-  background: linear-gradient(to right, orange, orangered);
-  -webkit-background-clip: text;
-  background-clip: text;
-  position: absolute;
-  opacity: 0;
-  animation-name: load;
-  animation-duration: 1s;
-  animation-delay: 1s;
-  animation-timing-function: linear;
-}
-#loader h1:nth-child(2) {
-  animation-delay: 2s;
-}
-#loader h1:nth-child(3) {
-  animation-delay: 3s;
-}
-@keyframes load {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@media (max-width: 600px) {
-  #loader h1 {
-    font-size: 9vw;
-  }
-}
-
-/* ABOUT US PAGE */
-.page1 img {
-  object-fit: cover;
-}
+/* About us page */
 .page1 .page1Main {
   height: 100%;
   width: 100%;
   padding: 18vw 8.5vw 18vw;
   color: white;
 }
+
 .page1Main h1 {
   font-weight: 500;
   font-size: 2vw;
   font-family: "matter";
   letter-spacing: -0.1vw;
 }
+
 .headings {
   display: flex;
   gap: 1vw;
 }
+
 .headings h1 {
   font-family: "matter";
   -webkit-text-stroke: 0.1px rgb(255, 255, 255);
@@ -254,34 +296,33 @@ h1.maintext {
   z-index: 1;
   transition: all 0.5s;
 }
+
 .headings h1:hover {
   color: rgb(255, 255, 255);
 }
 
-/* ABOUT US PAGE ENDDDD */
-
-/* FUN SEGMENT PAGE STARTS */
+/* Fun segment */
 .thumbnailPage {
   min-height: 100vh;
   width: 100%;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   flex-direction: column;
   padding: 5vw 5vw;
 }
+
 .thumbnailPage .titles {
   height: 7vw;
   width: 100%;
   padding: 0.4vw 0vw;
   color: wheat;
 }
+
 .thumbnailPage .titles h1 {
   font-size: 3.4vw;
   text-align: center;
   line-height: 1;
   font-family: "logo";
 }
+
 .thumbnailPage .titles h4 {
   font-size: 3vw;
   font-weight: 400;
@@ -290,6 +331,7 @@ h1.maintext {
   font-family: "matter";
   letter-spacing: -2px;
 }
+
 .thumbnails {
   height: 30vw;
   width: 100%;
@@ -299,91 +341,173 @@ h1.maintext {
   align-items: center;
   justify-content: space-evenly;
 }
+
 .thumbnails .thumbnail {
   height: 23vw;
   width: 19vw;
 }
+
 .thumbnails .thumbnail .thumbnailTitle {
   height: 30%;
   width: 100%;
   padding: 1.5vw;
 }
+
 .thumbnails .thumbnail .thumbnailImage {
   height: 70%;
   width: 100%;
 }
+
 .thumbnails .thumbnail .thumbnailImage img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
+
 .thumbnails .thumbnail .thumbnailTitle h3 {
   color: white;
   font-size: 1.7vw;
   font-weight: 300;
   line-height: 1;
 }
-.page2 {
-  height: 100%;
-  width: 100%;
-}
+
 .paintTitle {
   height: 20%;
   width: 100%;
   text-align: center;
   font-size: 2.5vw;
   padding: 2vw;
-  font-weight: 500;
 }
+
 .paintTitle h1 {
   padding: 2vw;
   font-weight: 500;
   font-family: "logo";
   letter-spacing: -1px;
 }
+
 .paint {
   height: 80%;
   width: 100%;
 }
+
 #gradient-canvas {
   background: linear-gradient(45deg, #000000, #1a1a1a, #2d2d2d);
 }
-
-.floating-elements {
-  position: relative;
-  height: 300px;
+.floating-shapes div {
+  animation: float 8s infinite;
+  opacity: 0.6;
 }
 
-.floating-circle,
-.floating-square,
-.floating-triangle {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-}
-
-.floating-circle {
-  border-radius: 50%;
+.shape-1 {
+  top: 20%;
   left: 20%;
+  animation-delay: 0s;
 }
 
-.floating-square {
-  right: 20%;
+.shape-2 {
+  top: 60%;
+  left: 60%;
+  animation-delay: -2s;
 }
 
-.floating-triangle {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  left: 50%;
+.shape-3 {
+  top: 40%;
+  left: 80%;
+  animation-delay: -4s;
 }
-/* FUN SEGMENT PAGE ENDS */
-/* page4 index.php */
 
-/* page4 index.php ENDS*/
-/* PAGE 5 ALONG WITH FOOTER STARTS */
-.page5 {
-  min-height: 100vh;
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(100px, 100px) rotate(90deg);
+  }
+
+  50% {
+    transform: translate(0, 200px) rotate(180deg);
+  }
+
+  75% {
+    transform: translate(-100px, 100px) rotate(270deg);
+  }
+}
+/* 
+
+*/
+.page4 {
+  font-family: "matter";
+}
+
+.eye-container {
+  display: flex;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.eye {
+  width: 180px;
+  height: 180px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: rotateX(10deg);
+}
+
+.eyelid {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: #1a1a1a;
+  top: -100%;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  transition: all 0.3s ease;
+  opacity: 0.95;
+  z-index: 3;
+}
+
+.pupil {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(145deg, #000000, #1a1a1a);
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: all 0.1s ease;
+  z-index: 2;
+}
+
+.reflection {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  top: 25%;
+  left: 25%;
+  z-index: 2;
+  filter: blur(1px);
+}
+
+.eye::before {
+  content: "";
+  position: absolute;
   width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.9) 10%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 4;
 }
-/* PAGE 5 ALONG WITH FOOTER ENDS */

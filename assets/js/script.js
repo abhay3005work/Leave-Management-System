@@ -1,71 +1,78 @@
+// Initialize Shery.js effects
 Shery.mouseFollower({});
 Shery.makeMagnet(".magnet", {});
 
+// Smooth scrolling with Lenis
 function lenisscroll() {
   const lenis = new Lenis();
-
-  lenis.on("scroll", (e) => {
-    console.log(e);
-  });
+  lenis.on("scroll", (e) => console.log(e));
 
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
-
   requestAnimationFrame(raf);
 }
 lenisscroll();
+// Handle loader animation and removal
+function handleLoader() {
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      document.querySelector(".loader-wrapper").classList.add("slide-up");
+    }, 2000); // Hide loader after 2 seconds
+  });
+}
+handleLoader();
+
+// Audio and icon animations
 function iconanimate() {
   const icon = document.querySelector(".icon i");
   let audio = document.querySelector("audio");
 
   icon.addEventListener("mouseenter", () => {
-    // Only apply hover animation if the audio is not playing
     if (audio.paused) {
       gsap.to(icon, {
         duration: 0.3,
-        scale: 1.1, // Slightly increase the scale for a subtle zoom
-        color: "#9dac94", // Change the icon color on hover
-        ease: "power1.out", // Smooth ease-out effect
+        scale: 1.1,
+        color: "#9dac94",
+        ease: "power1.out",
       });
     }
   });
 
   icon.addEventListener("mouseleave", () => {
-    // Revert to white if music is not playing
     if (audio.paused) {
       gsap.to(icon, {
         duration: 0.3,
-        scale: 1, // Revert to original scale
-        color: "#000", // Revert to original color (white)
+        scale: 1,
+        color: "#000",
         ease: "power1.out",
       });
     }
   });
 }
 iconanimate();
+
 function songplay() {
   let audio = document.querySelector("audio");
-  let icon = document.getElementById("playsong"); // Get the icon by ID
+  let icon = document.getElementById("playsong");
 
   if (audio.paused) {
-    audio.muted = false; // Unmute the audio
-    audio.play(); // Play the audio
-    audio.volume = 0.4; // Set volume to 40%
-
-    // Change icon color to indicate music is playing
-    gsap.to(icon, { duration: 0.3, color: "#9dac94" }); // Apply color change with GSAP
+    audio.muted = false;
+    audio.play();
+    audio.volume = 0.4;
+    gsap.to(icon, { duration: 0.3, color: "#9dac94" });
   } else {
-    audio.pause(); // Pause the audio
-    audio.muted = true; // Mute the audio
-
-    // Change icon color back to white when music is stopped
-    gsap.to(icon, { duration: 0.3, color: "#000" }); // Apply color change back to white with GSAP
+    audio.pause();
+    audio.muted = true;
+    gsap.to(icon, { duration: 0.3, color: "#000" });
   }
 }
+
+// Navigation animations
 function navAnimation() {
   let page2 = document.querySelector("#page2");
+
   gsap.to("nav h3", {
     color: "black",
     scrollTrigger: {
@@ -76,6 +83,7 @@ function navAnimation() {
       onLeaveBack: () => gsap.to("nav h3", { color: "white" }),
     },
   });
+
   gsap.to(".icon i", {
     color: "black",
     scrollTrigger: {
@@ -88,8 +96,12 @@ function navAnimation() {
   });
 }
 navAnimation();
+
+// Page-specific code
 if (document.getElementById("p1")) {
   let page2 = document.querySelector(".page2");
+
+  // Nav links color change on scroll
   gsap.to(".navLinks a", {
     color: "black",
     scrollTrigger: {
@@ -100,6 +112,8 @@ if (document.getElementById("p1")) {
       onLeaveBack: () => gsap.to(".navLinks a", { color: "white" }),
     },
   });
+
+  // Frame scroll animation
   function framescrollanimation() {
     const canvas = document.querySelector("canvas");
     const context = canvas.getContext("2d");
@@ -117,7 +131,7 @@ if (document.getElementById("p1")) {
         img.src = imageUrl;
 
         img.onload = function () {
-          images.push(img); // Push image to the array after it's loaded
+          images.push(img);
           imagesLoaded++;
           if (imagesLoaded === frames.maxIndex) {
             loadImage(frames.currentIndex);
@@ -149,10 +163,8 @@ if (document.getElementById("p1")) {
         const offsetY = (canvas.height - newHeight) / 2;
 
         context.clearRect(0, 0, canvas.width, canvas.height);
-
         context.imageSmoothingEnabled = true;
         context.imageSmoothingQuality = "high";
-
         context.drawImage(img, offsetX, offsetY, newWidth, newHeight);
 
         frames.currentIndex = index;
@@ -180,39 +192,28 @@ if (document.getElementById("p1")) {
       }
 
       tl.to(frames, updateFrame(50), "a")
-        .to(
-          ".animate1",
-          {
-            opacity: 0,
-            ease: "linear",
-          },
-          "a"
-        )
-
+        .to(".animate1", { opacity: 0, ease: "linear" }, "a")
         .to(frames, updateFrame(80), "second")
         .to(".animate2", { opacity: 1, ease: "linear" }, "second")
         .to(frames, updateFrame(110), "third")
         .to(".animate2", { opacity: 0, ease: "linear" }, "third")
-
         .to(frames, updateFrame(140), "fourth")
         .to(".animate3", { opacity: 1, ease: "linear" }, "fourth")
         .to(frames, updateFrame(169), "fifth")
         .to(".animate3", { opacity: 0, ease: "linear" }, "fifth");
     }
 
-    preloadImages(); // Moved this outside of startAnimation to ensure images load first
+    preloadImages();
   }
   framescrollanimation();
+
+  // Page animations
   function page1animation() {
     const page1 = document.querySelector(".page1");
     const h1text = document.querySelector(".page1text h1");
     const nav = document.querySelector("nav");
 
     let tl = gsap.timeline();
-    // tl.from(page1, {
-    //   duration: 0.7,
-    //   y: 500,
-    // });
     tl.from(nav, {
       y: -50,
       opacity: 0,
@@ -226,22 +227,23 @@ if (document.getElementById("p1")) {
     });
   }
   page1animation();
+
   function page3animation() {
     gsap.to(".page3 .box", {
       transform: "translateX(-700%)",
       scrollTrigger: {
         trigger: ".page3",
         scroller: "body",
-        // markers: true,
         start: "top 0",
         end: "top -150%",
-
         scrub: 3,
         pin: true,
       },
     });
   }
   page3animation();
+
+  // Shery.js image effects
   function Sheryimg() {
     Shery.imageEffect(".img", {
       style: 4,
@@ -281,64 +283,100 @@ if (document.getElementById("p1")) {
     });
   }
   Sheryimg();
-  function loaderAnimation() {
-    var loader = document.querySelector("#loader");
-    setTimeout(function () {
-      loader.style.top = "-100%";
-    }, 4200);
-  }
-  loaderAnimation();
-  function eyeMovement() {
-    const eyes = document.querySelectorAll(".eye");
-    const pupils = document.querySelectorAll(".eyePupil");
 
-    document.addEventListener("mousemove", (event) => {
-      const { clientX, clientY } = event;
-      eyes.forEach((eye, index) => {
-        const rect = eye.getBoundingClientRect();
-        const eyeCenterX = rect.left + rect.width / 2;
-        const eyeCenterY = rect.top + rect.height / 2;
+  // Loader animation
+  // function loaderAnimation() {
+  //   var loader = document.querySelector("#loader");
+  //   setTimeout(function () {
+  //     loader.style.top = "-100%";
+  //   }, 4200);
+  // }
+  // loaderAnimation();
 
-        const deltaX = clientX - eyeCenterX;
-        const deltaY = clientY - eyeCenterY;
-        const angle = Math.atan2(deltaY, deltaX);
+  // Eye tracking and blinking animations
+  function eyeAnimations() {
+    document.addEventListener("mousemove", (e) => {
+      const pupils = document.querySelectorAll(".pupil");
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      pupils.forEach((pupil) => {
+        const eyeRect = pupil.parentElement.getBoundingClientRect();
+        const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+        const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+        const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
         const distance = Math.min(
-          eye.offsetWidth / 4,
-          Math.sqrt(deltaX ** 2 + deltaY ** 2)
+          Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY) * 0.15,
+          40
         );
 
-        const pupilX = Math.cos(angle) * distance;
-        const pupilY = Math.sin(angle) * distance;
+        const moveX = Math.cos(angle) * distance;
+        const moveY = Math.sin(angle) * distance;
 
-        gsap.to(pupils[index], {
-          x: pupilX,
-          y: pupilY,
-          duration: 0.4,
+        pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    });
+
+    // Random blinking
+    setInterval(() => {
+      const eyelids = document.querySelectorAll(".eyelid");
+      eyelids.forEach((eyelid) => {
+        gsap.to(eyelid, {
+          duration: 0.15,
+          top: 0,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.inOut",
+        });
+      });
+    }, 5000);
+
+    // Eyes close and hide pupils on button hover
+    const hoverBtn = document.querySelector(".hover-btn");
+    const eyelids = document.querySelectorAll(".eyelid");
+    const pupils = document.querySelectorAll(".pupil");
+
+    hoverBtn.addEventListener("mouseenter", () => {
+      eyelids.forEach((eyelid) => {
+        gsap.to(eyelid, {
+          duration: 0.3,
+          top: 0,
+          ease: "power2.out",
+        });
+      });
+      pupils.forEach((pupil) => {
+        gsap.to(pupil, {
+          duration: 0.3,
+          opacity: 0,
+          ease: "power2.out",
+        });
+      });
+    });
+
+    hoverBtn.addEventListener("mouseleave", () => {
+      eyelids.forEach((eyelid) => {
+        gsap.to(eyelid, {
+          duration: 0.3,
+          top: "-100%",
+          ease: "power2.out",
+        });
+      });
+      pupils.forEach((pupil) => {
+        gsap.to(pupil, {
+          duration: 0.3,
+          opacity: 1,
+          ease: "power2.out",
         });
       });
     });
   }
-  eyeMovement();
-  const funBtn = document.querySelector(".fun-btn");
-  const eyelids = document.querySelectorAll(".eyelid");
-
-  funBtn.addEventListener("mouseenter", () => {
-    eyelids.forEach((eyelid) => {
-      eyelid.style.transform = "scaleY(1)";
-      setTimeout(() => {
-        eyelid.style.transform = "scaleY(0)";
-      }, 200);
-    });
-  });
-
-  funBtn.addEventListener("mouseleave", () => {
-    eyelids.forEach((eyelid) => {
-      eyelid.style.transform = "scaleY(0)";
-    });
-  });
+  eyeAnimations();
 }
 
+// Page 2 specific code
 if (document.getElementById("p2")) {
+  // Hover effects
   Shery.hoverWithMediaCircle(".hvr", {
     images: [
       "./assets/takealongs/images/hover2.jpg",
@@ -347,6 +385,7 @@ if (document.getElementById("p2")) {
     ],
   });
 
+  // Review slider
   const swiper = new Swiper(".reviewSwiper", {
     slidesPerView: 1,
     spaceBetween: 30,
@@ -394,7 +433,9 @@ if (document.getElementById("p2")) {
   });
 }
 
+// Page 3 specific code
 if (document.getElementById("p3")) {
+  // Fun segment page animations
   function funsegmentpage() {
     let thumbnails = document.querySelectorAll(".thumbnail");
 
@@ -416,8 +457,9 @@ if (document.getElementById("p3")) {
       });
     });
   }
-
   funsegmentpage();
+
+  // Shery.js effects for fun segment
   function sherryJsFunSeg() {
     Shery.imageEffect(".thumbnailImage img", {
       style: 4,
@@ -454,56 +496,7 @@ if (document.getElementById("p3")) {
         noise_height: { value: 0.5, range: [0, 2] },
         noise_scale: { value: 10, range: [0, 100] },
       },
-      // debug: true,
     });
   }
   sherryJsFunSeg();
-
-  // Weather API
-  async function getWeather() {
-    const city = document.getElementById("city-input").value;
-    const apiKey = "YOUR_OPENWEATHER_API_KEY"; // Replace with your API key
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-      );
-      const data = await response.json();
-      document.getElementById("weather-info").innerHTML = `
-                                <p>Temperature: ${data.main.temp}°C</p>
-                                <p>Weather: ${data.weather[0].main}</p>
-                                <p>Humidity: ${data.main.humidity}%</p>
-                            `;
-    } catch (error) {
-      console.error("Error fetching weather:", error);
-    }
-  }
-
-  // Quote API
-  async function getRandomQuote() {
-    try {
-      const response = await fetch("https://api.quotable.io/random");
-      const data = await response.json();
-      document.getElementById("quote-text").textContent = `"${data.content}"`;
-      document.getElementById("quote-author").textContent = `- ${data.author}`;
-    } catch (error) {
-      console.error("Error fetching quote:", error);
-    }
-  }
-
-  // Cat API
-  async function getRandomCat() {
-    try {
-      const response = await fetch(
-        "https://api.thecatapi.com/v1/images/search"
-      );
-      const data = await response.json();
-      document.getElementById("cat-image").src = data[0].url;
-    } catch (error) {
-      console.error("Error fetching cat image:", error);
-    }
-  }
-
-  // Initial load
-  getRandomQuote();
-  getRandomCat();
 }
