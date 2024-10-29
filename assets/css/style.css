@@ -511,3 +511,159 @@ h1.maintext {
   pointer-events: none;
   z-index: 4;
 }
+
+/* Quiz container and layout */
+
+/* Main quiz container */
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Question card styling */
+.question-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 3rem;
+  margin: 3rem 0;
+  transform: translateY(50px);
+  opacity: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Question text styling */
+.question-text {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(113, 178, 128, 0.5);
+  letter-spacing: 0.5px;
+}
+
+/* Options grid layout */
+.options {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Individual option styling */
+.option {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Option hover effect */
+.option:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.3s;
+}
+
+.option:hover:before {
+  left: 100%;
+}
+
+.option:hover {
+  background: rgba(113, 178, 128, 0.2);
+  transform: translateX(15px) scale(1.02);
+  box-shadow: 0 5px 20px rgba(113, 178, 128, 0.3);
+}
+
+/* Selected option state */
+.selected {
+  background: rgba(113, 178, 128, 0.3) !important;
+  border-color: #71b280;
+  box-shadow: 0 0 30px rgba(113, 178, 128, 0.4) !important;
+  transform: translateX(15px) scale(1.02);
+}
+
+/* Canvas positioning */
+#quiz-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Progress bar styling */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #134e5e, #71b280, #134e5e);
+  background-size: 200% 100%;
+  animation: gradientMove 5s linear infinite;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(113, 178, 128, 0.5);
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Particles container */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Enhanced hover effects */
+.option:hover {
+  transform: translateX(15px) scale(1.02) rotate(1deg);
+}
+
+/* Pulse animation for selected options */
+.selected {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateX(15px) scale(1.02);
+  }
+  50% {
+    transform: translateX(15px) scale(1.04);
+  }
+  100% {
+    transform: translateX(15px) scale(1.02);
+  }
+}

@@ -13,56 +13,103 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #0f0f1e;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
       .quiz-container {
         max-width: 800px;
         margin: 0 auto;
         padding: 2rem;
+        position: relative;
       }
 
       .question-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 2rem;
-        margin: 2rem 0;
-        transform: translateY(100px);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border-radius: 30px;
+        padding: 3rem;
+        margin: 3rem 0;
+        transform: translateY(50px); /* Reduced initial offset */
         opacity: 0;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.5s ease;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Faster transition */
       }
 
       .question-text {
-        font-size: 1.5rem;
+        font-size: 2rem;
         color: #fff;
-        margin-bottom: 1.5rem;
-        font-family: "matter";
+        margin-bottom: 2rem;
+        font-weight: 600;
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        letter-spacing: 0.5px;
       }
 
       .options {
         display: grid;
-        gap: 1rem;
+        gap: 1.5rem;
       }
 
       .option {
-        padding: 1rem;
+        padding: 1.5rem;
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
         color: #fff;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Faster transition */
+        font-size: 1.1rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .option:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: 0.3s; /* Faster transition */
+      }
+
+      .option:hover:before {
+        left: 100%;
       }
 
       .option:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateX(10px);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(15px) scale(1.02);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
 
       .selected {
-        background: rgba(0, 255, 255, 0.2) !important;
+        background: rgba(0, 255, 255, 0.15) !important;
         border-color: cyan;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.3) !important;
+        transform: translateX(15px) scale(1.02);
       }
 
       #quiz-canvas {
@@ -70,20 +117,44 @@
         top: 0;
         left: 0;
         z-index: -1;
+        filter: blur(2px);
       }
 
       .progress-bar {
         position: fixed;
         top: 0;
         left: 0;
-        height: 4px;
-        background: linear-gradient(90deg, cyan, purple);
+        height: 6px;
+        background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+        background-size: 200% 100%;
+        animation: gradientMove 5s linear infinite;
         z-index: 1000;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 200% 0%;
+        }
+      }
+
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
       }
     </style>
   </head>
   <body>
     <div class="progress-bar"></div>
+    <div class="particles"></div>
     <canvas id="quiz-canvas"></canvas>
 
     <div class="quiz-container">
@@ -92,10 +163,10 @@
           How often do you feel overwhelmed by your emotions?
         </h3>
         <div class="options">
-          <div class="option">Rarely or never</div>
-          <div class="option">Sometimes</div>
-          <div class="option">Often</div>
-          <div class="option">Almost always</div>
+          <div class="option">✨ Rarely or never</div>
+          <div class="option">🌟 Sometimes</div>
+          <div class="option">⭐ Often</div>
+          <div class="option">💫 Almost always</div>
         </div>
       </div>
 
@@ -104,10 +175,283 @@
           How well do you handle stress in your daily life?
         </h3>
         <div class="options">
-          <div class="option">Very well</div>
-          <div class="option">Moderately well</div>
-          <div class="option">Not very well</div>
-          <div class="option">Poorly</div>
+          <div class="option">🌈 Very well</div>
+          <div class="option">✨ Moderately well</div>
+          <div class="option">🌟 Not very well</div>
+          <div class="option">⭐ Poorly</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="3">
+        <h3 class="question-text">
+          How often do you experience difficulty sleeping?
+        </h3>
+        <div class="options">
+          <div class="option">🌙 Rarely or never</div>
+          <div class="option">✨ A few times a month</div>
+          <div class="option">🌟 Several times a week</div>
+          <div class="option">⭐ Almost every night</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="4">
+        <h3 class="question-text">
+          How would you rate your ability to concentrate?
+        </h3>
+        <div class="options">
+          <div class="option">🎯 Excellent</div>
+          <div class="option">✨ Good</div>
+          <div class="option">🌟 Fair</div>
+          <div class="option">⭐ Poor</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="5">
+        <h3 class="question-text">How often do you feel lonely or isolated?</h3>
+        <div class="options">
+          <div class="option">🌺 Rarely or never</div>
+          <div class="option">✨ Sometimes</div>
+          <div class="option">🌟 Often</div>
+          <div class="option">⭐ Very often</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="6">
+        <h3 class="question-text">
+          How would you describe your energy levels throughout the day?
+        </h3>
+        <div class="options">
+          <div class="option">⚡ Consistently high</div>
+          <div class="option">✨ Moderate</div>
+          <div class="option">🌟 Low</div>
+          <div class="option">⭐ Very low</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="7">
+        <h3 class="question-text">
+          How often do you feel anxious in social situations?
+        </h3>
+        <div class="options">
+          <div class="option">🦋 Rarely or never</div>
+          <div class="option">✨ Sometimes</div>
+          <div class="option">🌟 Often</div>
+          <div class="option">⭐ Almost always</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="8">
+        <h3 class="question-text">How would you rate your self-esteem?</h3>
+        <div class="options">
+          <div class="option">🌟 Very high</div>
+          <div class="option">✨ Moderate</div>
+          <div class="option">⭐ Low</div>
+          <div class="option">💫 Very low</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="9">
+        <h3 class="question-text">
+          How often do you experience physical symptoms of stress (headaches,
+          tension)?
+        </h3>
+        <div class="options">
+          <div class="option">🌺 Rarely or never</div>
+          <div class="option">✨ Sometimes</div>
+          <div class="option">🌟 Often</div>
+          <div class="option">⭐ Very often</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="10">
+        <h3 class="question-text">
+          How well do you maintain a work-life balance?
+        </h3>
+        <div class="options">
+          <div class="option">⚖️ Very well</div>
+          <div class="option">✨ Moderately well</div>
+          <div class="option">🌟 Not very well</div>
+          <div class="option">⭐ Poorly</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="11">
+        <h3 class="question-text">
+          How often do you feel hopeful about the future?
+        </h3>
+        <div class="options">
+          <div class="option">🌈 Almost always</div>
+          <div class="option">✨ Often</div>
+          <div class="option">🌟 Sometimes</div>
+          <div class="option">⭐ Rarely</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="12">
+        <h3 class="question-text">
+          How would you rate your ability to handle criticism?
+        </h3>
+        <div class="options">
+          <div class="option">🛡️ Very good</div>
+          <div class="option">✨ Good</div>
+          <div class="option">🌟 Fair</div>
+          <div class="option">⭐ Poor</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="13">
+        <h3 class="question-text">
+          How often do you engage in activities you enjoy?
+        </h3>
+        <div class="options">
+          <div class="option">🎨 Daily</div>
+          <div class="option">✨ Several times a week</div>
+          <div class="option">🌟 Rarely</div>
+          <div class="option">⭐ Almost never</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="14">
+        <h3 class="question-text">
+          How would you describe your appetite patterns?
+        </h3>
+        <div class="options">
+          <div class="option">🍎 Very consistent</div>
+          <div class="option">✨ Somewhat consistent</div>
+          <div class="option">🌟 Irregular</div>
+          <div class="option">⭐ Very irregular</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="15">
+        <h3 class="question-text">
+          How often do you feel satisfied with your daily accomplishments?
+        </h3>
+        <div class="options">
+          <div class="option">🏆 Almost always</div>
+          <div class="option">✨ Often</div>
+          <div class="option">🌟 Sometimes</div>
+          <div class="option">⭐ Rarely</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="16">
+        <h3 class="question-text">
+          How well do you handle unexpected changes in your routine?
+        </h3>
+        <div class="options">
+          <div class="option">🌊 Very well</div>
+          <div class="option">✨ Moderately well</div>
+          <div class="option">🌟 Not very well</div>
+          <div class="option">⭐ Poorly</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="17">
+        <h3 class="question-text">
+          How often do you feel understood by others?
+        </h3>
+        <div class="options">
+          <div class="option">🤝 Almost always</div>
+          <div class="option">✨ Often</div>
+          <div class="option">🌟 Sometimes</div>
+          <div class="option">⭐ Rarely</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="18">
+        <h3 class="question-text">
+          How would you rate your ability to set boundaries?
+        </h3>
+        <div class="options">
+          <div class="option">🛑 Excellent</div>
+          <div class="option">✨ Good</div>
+          <div class="option">🌟 Fair</div>
+          <div class="option">⭐ Poor</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="19">
+        <h3 class="question-text">
+          How often do you experience racing thoughts?
+        </h3>
+        <div class="options">
+          <div class="option">🌺 Rarely or never</div>
+          <div class="option">✨ Sometimes</div>
+          <div class="option">🌟 Often</div>
+          <div class="option">⭐ Very often</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="20">
+        <h3 class="question-text">
+          How would you rate your overall life satisfaction?
+        </h3>
+        <div class="options">
+          <div class="option">🌈 Very high</div>
+          <div class="option">✨ Moderate</div>
+          <div class="option">🌟 Low</div>
+          <div class="option">⭐ Very low</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="21">
+        <h3 class="question-text">
+          How often do you practice self-care activities?
+        </h3>
+        <div class="options">
+          <div class="option">🌸 Daily</div>
+          <div class="option">✨ Several times a week</div>
+          <div class="option">🌟 Rarely</div>
+          <div class="option">⭐ Almost never</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="22">
+        <h3 class="question-text">
+          How well do you express your emotions to others?
+        </h3>
+        <div class="options">
+          <div class="option">💭 Very well</div>
+          <div class="option">✨ Moderately well</div>
+          <div class="option">🌟 With difficulty</div>
+          <div class="option">⭐ Rarely express</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="23">
+        <h3 class="question-text">
+          How often do you feel motivated to achieve your goals?
+        </h3>
+        <div class="options">
+          <div class="option">🎯 Almost always</div>
+          <div class="option">✨ Often</div>
+          <div class="option">🌟 Sometimes</div>
+          <div class="option">⭐ Rarely</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="24">
+        <h3 class="question-text">
+          How would you rate your ability to manage anger?
+        </h3>
+        <div class="options">
+          <div class="option">🌊 Very good</div>
+          <div class="option">✨ Good</div>
+          <div class="option">🌟 Fair</div>
+          <div class="option">⭐ Poor</div>
+        </div>
+      </div>
+
+      <div class="question-card" data-index="25">
+        <h3 class="question-text">
+          How often do you feel at peace with yourself?
+        </h3>
+        <div class="options">
+          <div class="option">🕊️ Almost always</div>
+          <div class="option">✨ Often</div>
+          <div class="option">🌟 Sometimes</div>
+          <div class="option">⭐ Rarely</div>
         </div>
       </div>
     </div>
@@ -124,64 +468,148 @@
       const renderer = new THREE.WebGLRenderer({
         canvas: document.querySelector("#quiz-canvas"),
         alpha: true,
+        antialias: true,
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
 
       // Create animated background
-      const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-      const material = new THREE.MeshBasicMaterial({
+      const geometry = new THREE.TorusKnotGeometry(15, 4, 200, 32);
+      const material = new THREE.MeshPhongMaterial({
         color: 0x00ffff,
         wireframe: true,
         transparent: true,
-        opacity: 0.1,
+        opacity: 0.15,
+        shininess: 100,
       });
       const torusKnot = new THREE.Mesh(geometry, material);
       scene.add(torusKnot);
 
-      camera.position.z = 30;
+      // Add lights
+      const light1 = new THREE.PointLight(0x00ffff, 1);
+      light1.position.set(0, 0, 50);
+      scene.add(light1);
+
+      const light2 = new THREE.PointLight(0xff00ff, 1);
+      light2.position.set(50, 0, 0);
+      scene.add(light2);
+
+      camera.position.z = 40;
 
       // Animation
       function animate() {
         requestAnimationFrame(animate);
-        torusKnot.rotation.x += 0.01;
-        torusKnot.rotation.y += 0.01;
+        torusKnot.rotation.x += 0.003;
+        torusKnot.rotation.y += 0.003;
+        torusKnot.rotation.z += 0.001;
+
+        light1.position.x = Math.sin(Date.now() * 0.001) * 30;
+        light2.position.y = Math.cos(Date.now() * 0.001) * 30;
+
         renderer.render(scene, camera);
       }
       animate();
 
       // GSAP Animations
+      gsap.registerPlugin(ScrollTrigger);
+
       const cards = document.querySelectorAll(".question-card");
       cards.forEach((card) => {
-        gsap.to(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: "top center+=100",
-            toggleActions: "play none none reverse",
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 50, // Reduced initial offset
+            scale: 0.95,
+            rotateX: -5,
           },
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-        });
+          {
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom-=100", // Show earlier
+              toggleActions: "play none none reverse",
+            },
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotateX: 0,
+            duration: 0.6, // Faster animation
+            ease: "power2.out", // Simpler easing
+          }
+        );
       });
 
-      // Handle option selection
+      // Handle option selection with animation
       document.querySelectorAll(".option").forEach((option) => {
         option.addEventListener("click", () => {
           const parent = option.parentElement;
-          parent
-            .querySelectorAll(".option")
-            .forEach((opt) => opt.classList.remove("selected"));
+          parent.querySelectorAll(".option").forEach((opt) => {
+            opt.classList.remove("selected");
+            gsap.to(opt, {
+              scale: 1,
+              duration: 0.2, // Faster animation
+              ease: "power1.out",
+            });
+          });
+
           option.classList.add("selected");
+          gsap.to(option, {
+            scale: 1.05,
+            duration: 0.3, // Faster animation
+            ease: "back.out(1.5)",
+          });
+
+          // Add particle burst effect
+          createParticleBurst(option);
         });
       });
 
-      // Update progress bar
+      // Particle burst effect
+      function createParticleBurst(element) {
+        const rect = element.getBoundingClientRect();
+        const particles = 12; // Fewer particles
+
+        for (let i = 0; i < particles; i++) {
+          const particle = document.createElement("div");
+          particle.style.position = "fixed";
+          particle.style.width = "8px";
+          particle.style.height = "8px";
+          particle.style.background = `rgba(${Math.random() * 255}, ${
+            Math.random() * 255
+          }, 255, 0.8)`;
+          particle.style.borderRadius = "50%";
+          particle.style.left = rect.left + rect.width / 2 + "px";
+          particle.style.top = rect.top + rect.height / 2 + "px";
+          document.querySelector(".particles").appendChild(particle);
+
+          gsap.to(particle, {
+            x: (Math.random() - 0.5) * 200,
+            y: (Math.random() - 0.5) * 200,
+            opacity: 0,
+            duration: 0.6, // Faster animation
+            ease: "power1.out",
+            onComplete: () => particle.remove(),
+          });
+        }
+      }
+
+      // Smooth progress bar
       window.addEventListener("scroll", () => {
         const scrolled = window.scrollY;
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const progress = (scrolled / max) * 100;
-        document.querySelector(".progress-bar").style.width = progress + "%";
+        gsap.to(".progress-bar", {
+          width: progress + "%",
+          duration: 0.2, // Faster animation
+          ease: "none",
+        });
+      });
+
+      // Resize handler
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
     </script>
   </body>

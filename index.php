@@ -10,15 +10,14 @@
 </head>
 
 <body id="p1">
-  <!-- <div class="loader-wrapper">
+  <div class="loader-wrapper">
     <div class="loader">
       <div class="loader-text">
         <span class="fade-up">NueroVista</span>
         <span class="fade-up">.</span>
       </div>
     </div>
-  </div> -->
-
+  </div>
 
 
 
