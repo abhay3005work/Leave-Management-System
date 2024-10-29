@@ -69,7 +69,7 @@ body {
 
 .loader {
   display: flex;
-  font-family: "logo", sans-serif;
+  font-family: "logo";
   font-size: 3.5vw;
 }
 

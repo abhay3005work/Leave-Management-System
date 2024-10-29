@@ -17,7 +17,9 @@
             <img class="absolute z-[1]" src="https://t4.ftcdn.net/jpg/05/04/46/39/360_F_504463966_3PK2hdAKXebryGMgkpfZy5PrEpgub6VG.png" alt="">
             <nav>
                 <div class="logo">
-                    <h3 class="magnet text-white">NueroVista.</h3>
+                    <a href="./index.php">
+                        <h3 class="magnet text-white text-2xl font-bold hover:text-amber-300 transition-colors">NueroVista.</h3>
+                    </a>
                 </div>
                 <div class="icon">
                     <i class="fa-solid fa-music magnet" style="color:white" id="playsong" onclick="songplay()"></i>

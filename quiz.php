@@ -15,7 +15,9 @@
 <body id="p4" class="bg-gradient-to-br from-emerald-900 to-green-900">
     <nav class="fixed z-20 flex justify-between items-center px-8 py-6">
         <div class="logo">
-            <h3 class="magnet text-white text-3xl font-bold hover:text-amber-300 transition-colors">NueroVista.</h3>
+            <a href="./index.php">
+                <h3 class="magnet text-white text-2xl font-bold hover:text-amber-300 transition-colors">NueroVista.</h3>
+            </a>
         </div>
         <div class="icon">
             <i class="fa-solid fa-music magnet text-2xl hover:text-amber-300 transition-colors cursor-pointer" style="color:white" id="playsong" onclick="songplay()"></i>

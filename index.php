@@ -32,7 +32,9 @@
       <div class="page1text">
         <nav>
           <div class="logo">
-            <h3 class="magnet">NueroVista.</h3>
+            <a href="./index.php">
+              <h3 class="magnet text-white text-2xl font-bold hover:text-amber-300 transition-colors">NueroVista.</h3>
+            </a>
           </div>
           <div class="navLinks magnet">
             <a href="#">Quiz</a>
@@ -41,7 +43,8 @@
           </div>
 
           <div class="icon">
-            <i class="fa-solid fa-music magnet" id="playsong " onclick="songplay()"></i>
+            <i class="fa-solid fa-music magnet" id="playsong" onclick="songplay()" style="cursor: pointer"></i>
+
           </div>
         </nav>
         <h1 class="h1text"><span>Learn About </span> NueroVista.</h1>
@@ -52,7 +55,7 @@
         <div class="w-full sticky top-0 left-0 h-screen">
           <canvas class="w-full h-screen" id=" canvas"></canvas>
           <div
-            class="textdiv absolute animate1 z-[99] text-black bottom-20 w-1/2 left-20">
+            class="textdiv absolute animate1 z-[99] text-white bottom-20 w-1/2 left-20">
             <h1 class=" maintext">Solutions that fit your needs.</h1>
           </div>
           <div
@@ -62,7 +65,7 @@
             </h1>
           </div>
           <div
-            class="absolute animate3 z-[99] text-black bottom-20 w-1/2 left-20 opacity-0">
+            class="absolute animate3 z-[99] text-white bottom-20 w-1/2 left-20 opacity-0">
             <h1 class=" maintext">
               Confidential mental health tracking.
             </h1>
@@ -75,7 +78,7 @@
         <div class="box">
           <div class="boxtitle">
             <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h4>Mental Health Assessment</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/1.jpg" alt="" />
@@ -83,8 +86,8 @@
         </div>
         <div class="box">
           <div class="boxtitle">
-            <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h5>2.0</h5>
+            <h4>Anxiety Management</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/2.jpg" alt="" />
@@ -92,8 +95,8 @@
         </div>
         <div class="box">
           <div class="boxtitle">
-            <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h5>3.0</h5>
+            <h4>Depression Support</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/3.jpg" alt="" />
@@ -101,8 +104,8 @@
         </div>
         <div class="box">
           <div class="boxtitle">
-            <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h5>4.0</h5>
+            <h4>Stress Relief Techniques</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/4.jpg" alt="" />
@@ -110,8 +113,8 @@
         </div>
         <div class="box">
           <div class="boxtitle">
-            <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h5>5.0</h5>
+            <h4>Mindfulness Practices</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/5.jpg" alt="" />
@@ -119,8 +122,8 @@
         </div>
         <div class="box">
           <div class="boxtitle">
-            <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h5>6.0</h5>
+            <h4>Sleep Improvement</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/6.jpg" alt="" />
@@ -128,8 +131,8 @@
         </div>
         <div class="box">
           <div class="boxtitle">
-            <h5>1.0</h5>
-            <h4>Lorem ipsum dolor sit.</h4>
+            <h5>7.0</h5>
+            <h4>Mental Wellness Tips</h4>
           </div>
           <div class="boximg">
             <img class="img" src="./assets/takealongs/images/7.jpg" alt="" />
@@ -137,12 +140,8 @@
         </div>
       </div>
     </div>
-    <div class="page4 relative h-screen w-full flex flex-col items-center justify-center gap-12" style="background: linear-gradient(135deg, #0891b2, #0d9488, #06b6d4);">
-      <div class="text-center max-w-2xl px-4">
-        <h2 class="text-4xl font-bold text-white mb-4">Take a Break & Play Games</h2>
-        <p class="text-white/90 text-lg">Need a moment to recharge? Explore our collection of fun and engaging games. A little entertainment can boost your creativity and productivity!</p>
-      </div>
-      <div class="eye-container">
+    <div class="page4 relative h-screen w-full flex flex-col items-center justify-center gap-8" style="background: linear-gradient(135deg, #9333ea, #7c3aed, #6366f1);">
+      <div class="eye-container scale-75 mb-4">
         <div class="eye">
           <div class="eyelid"></div>
           <div class="pupil"></div>
@@ -154,14 +153,16 @@
           <div class="reflection"></div>
         </div>
       </div>
-      <a href="funseg.php" class="hover-btn px-12 py-6 bg-white/20 backdrop-blur-sm rounded-2xl text-xl font-medium text-white border-2 border-white/30 hover:bg-white/30 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/20 relative overflow-hidden group">
-        <span class="relative z-10">Let's Play!</span>
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-      </a>
-
+      <div class="text-center -mt-4">
+        <h2 class="text-5xl font-bold text-white mb-2">Ready for Some Fun?</h2>
+        <p class="text-xl text-white/80 mb-4">Join us for an exciting gaming experience!</p>
+        <p class="text-xl text-white/80 mb-6">Click below to start your adventure!</p>
+        <a href="funseg.php" class="inline-block px-12 py-6 bg-white text-purple-600 rounded-full text-2xl font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-200 hover:shadow-xl hover:bg-purple-50 border-4 border-white/50">
+          Let's Play!
+          <span class="ml-2">→</span>
+        </a>
+      </div>
     </div>
-
-
     <div class="page5 relative z-50" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe, #bae6fd);">
       <div class="relative overflow-hidden py-20">
         <div class="container mx-auto px-4">

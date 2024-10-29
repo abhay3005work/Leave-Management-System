@@ -1,22 +1,122 @@
 // Initialize Shery.js effects
-Shery.mouseFollower({});
-Shery.makeMagnet(".magnet", {});
+Shery.mouseFollower({
+  skew: true,
+  ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+  duration: 0.8,
+  size: 25,
+  color: "white",
+  backgroundColor: "rgba(255,255,255,0.2)",
+  borderWidth: 2,
+  borderColor: "white",
+  blend: true,
+});
+Shery.makeMagnet(".magnet", {
+  ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+  duration: 0.5,
+});
 
-function songplay() {
-  let audio = document.querySelector("audio");
-  let icon = document.getElementById("playsong");
+function initAudioPlayer() {
+  const audio = document.querySelector("audio");
+  const icon = document.getElementById("playsong");
 
-  if (audio.paused) {
-    audio.muted = false;
-    audio.play();
-    audio.volume = 0.4;
-    gsap.to(icon, { duration: 0.3, color: "#9dac94" });
-  } else {
-    audio.pause();
-    audio.muted = true;
+  // Only initialize if elements exist
+  if (!audio || !icon) return;
+
+  // Set initial state
+  audio.muted = true;
+  audio.volume = 0.4;
+
+  // Store audio state and current song in localStorage instead of sessionStorage
+  const updateAudioState = (isPlaying) => {
+    localStorage.setItem("audioPlaying", isPlaying);
+    localStorage.setItem("audioTime", audio.currentTime);
+    localStorage.setItem("currentSong", audio.src);
+  };
+
+  // Watch for audio source changes
+  const originalSrc = audio.src;
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === "attributes" && mutation.attributeName === "src") {
+        if (audio.src !== originalSrc) {
+          audio.muted = false;
+          audio.play();
+          gsap.to(icon, { duration: 0.3, color: "#9dac94" });
+          updateAudioState(true);
+        }
+      }
+    });
+  });
+
+  observer.observe(audio, { attributes: true });
+
+  // Restore audio state when page loads
+  const restoreAudioState = () => {
+    const wasPlaying = localStorage.getItem("audioPlaying") === "true";
+    const previousTime = parseFloat(localStorage.getItem("audioTime")) || 0;
+    const previousSong = localStorage.getItem("currentSong");
+
+    // If there was a previous song playing, restore it
+    if (previousSong && audio.src !== previousSong) {
+      audio.src = previousSong;
+    }
+
+    if (wasPlaying) {
+      audio.currentTime = previousTime;
+      audio.muted = false;
+      // Use play().catch to handle autoplay restrictions
+      audio.play().catch(() => {
+        console.log("Playback prevented. Interaction required.");
+      });
+      gsap.to(icon, { duration: 0.3, color: "#9dac94" });
+    } else {
+      audio.pause();
+      audio.muted = true;
+      gsap.to(icon, { duration: 0.3, color: "#000" });
+    }
+  };
+
+  // Handle play/pause
+  window.songplay = () => {
+    if (audio.paused) {
+      audio.muted = false;
+      audio.play();
+      gsap.to(icon, { duration: 0.3, color: "#9dac94" });
+      updateAudioState(true);
+    } else {
+      audio.pause();
+      audio.muted = true;
+      gsap.to(icon, { duration: 0.3, color: "#000" });
+      updateAudioState(false);
+    }
+  };
+
+  // Update state periodically while playing
+  setInterval(() => {
+    if (!audio.paused) {
+      updateAudioState(true);
+    }
+  }, 1000);
+
+  // Update state when audio naturally ends
+  audio.addEventListener("ended", () => {
+    updateAudioState(false);
     gsap.to(icon, { duration: 0.3, color: "#000" });
-  }
+  });
+
+  // Save state before page unload
+  window.addEventListener("beforeunload", () => {
+    if (!audio.paused) {
+      updateAudioState(true);
+    }
+  });
+
+  // Restore state on page load
+  restoreAudioState();
 }
+
+// Initialize when DOM is ready
+document.addEventListener("DOMContentLoaded", initAudioPlayer);
 
 // Smooth scrolling with Lenis
 function lenisscroll() {
@@ -125,47 +225,70 @@ if (document.getElementById("p1")) {
     let imagesLoaded = 0;
 
     function preloadImages() {
+      // Create a loading queue to load images sequentially
+      let loadQueue = [];
       for (var i = 1; i <= frames.maxIndex; i++) {
+        loadQueue.push(i);
+      }
+
+      function loadNext() {
+        if (loadQueue.length === 0) return;
+
+        const i = loadQueue.shift();
         const imageUrl = `./frames/frame_${i.toString().padStart(4, "0")}.jpeg`;
         const img = new Image();
         img.src = imageUrl;
 
         img.onload = function () {
-          images.push(img);
+          images[i - 1] = img; // Store in correct index
           imagesLoaded++;
           if (imagesLoaded === frames.maxIndex) {
             loadImage(frames.currentIndex);
             startAnimation();
             console.log("All images loaded");
+          } else {
+            loadNext(); // Load next image
           }
         };
 
         img.onerror = function () {
           console.error(`Failed to load image: ${imageUrl}`);
+          loadNext(); // Continue loading even if one fails
         };
+      }
+
+      // Start loading first few images
+      for (let i = 0; i < 5; i++) {
+        loadNext();
       }
     }
 
     function loadImage(index) {
       if (index >= 0 && index < frames.maxIndex) {
         const img = images[index];
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        if (!img) return; // Skip if image not loaded yet
 
-        const scaleX = canvas.width / img.width;
-        const scaleY = canvas.height / img.height;
+        // Cache canvas dimensions to avoid recalculating
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+
+        const scaleX = canvasWidth / img.width;
+        const scaleY = canvasHeight / img.height;
         const scale = Math.max(scaleX, scaleY);
 
         const newWidth = img.width * scale;
         const newHeight = img.height * scale;
 
-        const offsetX = (canvas.width - newWidth) / 2;
-        const offsetY = (canvas.height - newHeight) / 2;
+        const offsetX = (canvasWidth - newWidth) / 2;
+        const offsetY = (canvasHeight - newHeight) / 2;
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.imageSmoothingEnabled = true;
-        context.imageSmoothingQuality = "high";
-        context.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+        // Use requestAnimationFrame for smoother rendering
+        requestAnimationFrame(() => {
+          context.clearRect(0, 0, canvasWidth, canvasHeight);
+          context.imageSmoothingEnabled = true;
+          context.imageSmoothingQuality = "high";
+          context.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+        });
 
         frames.currentIndex = index;
       }
@@ -202,6 +325,21 @@ if (document.getElementById("p1")) {
         .to(frames, updateFrame(169), "fifth")
         .to(".animate3", { opacity: 0, ease: "linear" }, "fifth");
     }
+
+    // Set canvas size once at start
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Handle resize efficiently with debounce
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        loadImage(frames.currentIndex);
+      }, 250);
+    });
 
     preloadImages();
   }
@@ -295,8 +433,10 @@ if (document.getElementById("p1")) {
 
   // Eye tracking and blinking animations
   function eyeAnimations() {
-    document.addEventListener("mousemove", (e) => {
+    // Track mouse movement for pupil following with parallax effect
+    const handleMouseMove = (e) => {
       const pupils = document.querySelectorAll(".pupil");
+      const eyes = document.querySelectorAll(".eye");
       const mouseX = e.clientX;
       const mouseY = e.clientY;
 
@@ -305,71 +445,190 @@ if (document.getElementById("p1")) {
         const eyeCenterX = eyeRect.left + eyeRect.width / 2;
         const eyeCenterY = eyeRect.top + eyeRect.height / 2;
 
+        // Calculate angle and constrained distance with enhanced movement
         const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+        const maxDistance = Math.min(eyeRect.width, eyeRect.height) * 0.35;
         const distance = Math.min(
-          Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY) * 0.15,
-          40
+          Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY) * 0.18,
+          maxDistance
         );
 
         const moveX = Math.cos(angle) * distance;
         const moveY = Math.sin(angle) * distance;
 
-        pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      });
-    });
+        // Enhanced rotation based on movement
+        const rotation = ((angle * 180) / Math.PI) * 0.15;
 
-    // Random blinking
-    setInterval(() => {
-      const eyelids = document.querySelectorAll(".eyelid");
-      eyelids.forEach((eyelid) => {
-        gsap.to(eyelid, {
-          duration: 0.15,
-          top: 0,
-          yoyo: true,
-          repeat: 1,
-          ease: "power2.inOut",
+        // Smoother pupil movement with enhanced bounce
+        gsap.to(pupil, {
+          duration: 0.35,
+          x: moveX,
+          y: moveY,
+          rotation: rotation,
+          ease: "elastic.out(1.2, 0.7)",
         });
       });
-    }, 5000);
 
-    // Eyes close and hide pupils on button hover
-    const hoverBtn = document.querySelector(".hover-btn");
+      // Enhanced parallax effect for eyes
+      eyes.forEach((eye) => {
+        const moveX = (mouseX - window.innerWidth / 2) * 0.015;
+        const moveY = (mouseY - window.innerHeight / 2) * 0.015;
+
+        gsap.to(eye, {
+          duration: 0.7,
+          x: moveX,
+          y: moveY,
+          ease: "power3.out",
+        });
+      });
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // Enhanced natural blinking with smooth eyelid movement
+    function blink() {
+      const eyelids = document.querySelectorAll(".eyelid");
+      const blinkDuration = 0.2;
+
+      // Natural blink patterns
+      const blinkType = Math.random();
+      const isDoubleBlink = blinkType > 0.85;
+      const isTripleBlink = blinkType > 0.95;
+
+      eyelids.forEach((eyelid) => {
+        const tl = gsap.timeline();
+
+        // Create smooth eyelid motion
+        const blinkAnimation = {
+          duration: blinkDuration,
+          top: 0,
+          scaleY: 0.15,
+          transformOrigin: "top center",
+          background: "#000000",
+          borderRadius: "0 0 40% 40%",
+          yoyo: true,
+          ease: "power2.inOut",
+        };
+
+        if (isTripleBlink) {
+          tl.to(eyelid, { ...blinkAnimation, repeat: 5 });
+        } else if (isDoubleBlink) {
+          tl.to(eyelid, { ...blinkAnimation, repeat: 3 });
+        } else {
+          tl.to(eyelid, { ...blinkAnimation, repeat: 1 });
+        }
+      });
+
+      scheduleNextBlink();
+    }
+
+    function scheduleNextBlink() {
+      const nextBlinkDelay = 2500 + Math.random() * 3500;
+      setTimeout(blink, nextBlinkDelay);
+    }
+
+    scheduleNextBlink();
+
+    // Improved hover interactions for eyelids
+    const hoverBtn = document.querySelector("a[href='funseg.php']"); // Updated selector to target the specific button
     const eyelids = document.querySelectorAll(".eyelid");
     const pupils = document.querySelectorAll(".pupil");
+    const eyes = document.querySelectorAll(".eye");
 
-    hoverBtn.addEventListener("mouseenter", () => {
-      eyelids.forEach((eyelid) => {
-        gsap.to(eyelid, {
-          duration: 0.3,
-          top: 0,
-          ease: "power2.out",
-        });
-      });
-      pupils.forEach((pupil) => {
-        gsap.to(pupil, {
-          duration: 0.3,
-          opacity: 0,
-          ease: "power2.out",
-        });
-      });
+    const closeEyes = () => {
+      const tl = gsap.timeline();
+
+      tl.to(eyes, {
+        duration: 0.4,
+        scale: 1.05,
+        ease: "power2.out",
+      })
+        .to(
+          eyelids,
+          {
+            duration: 0.4,
+            top: 0,
+            scaleY: 0.15,
+            transformOrigin: "top center",
+            background: "#000000",
+            borderRadius: "0 0 40% 40%",
+            ease: "power2.inOut",
+            stagger: 0.05,
+          },
+          "-=0.3"
+        )
+        .to(
+          pupils,
+          {
+            duration: 0.3,
+            opacity: 0,
+            scale: 0.9,
+            ease: "power2.inOut",
+          },
+          "-=0.2"
+        );
+    };
+
+    const openEyes = () => {
+      const tl = gsap.timeline();
+
+      tl.to(eyelids, {
+        duration: 0.4,
+        top: "-100%",
+        scaleY: 1,
+        background: "#000000",
+        ease: "power2.out",
+        stagger: 0.05,
+      })
+        .to(
+          pupils,
+          {
+            duration: 0.4,
+            opacity: 1,
+            scale: 1,
+            ease: "power2.out",
+          },
+          "-=0.3"
+        )
+        .to(
+          eyes,
+          {
+            duration: 0.4,
+            scale: 1,
+            ease: "power2.out",
+          },
+          "-=0.3"
+        );
+    };
+
+    // Subtle natural eye movement
+    gsap.to(pupils, {
+      duration: "random(4, 6)",
+      x: "random(-2, 2)",
+      y: "random(-2, 2)",
+      rotation: "random(-3, 3)",
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: {
+        each: 0.5,
+        from: "random",
+      },
     });
 
-    hoverBtn.addEventListener("mouseleave", () => {
-      eyelids.forEach((eyelid) => {
-        gsap.to(eyelid, {
-          duration: 0.3,
-          top: "-100%",
-          ease: "power2.out",
-        });
-      });
-      pupils.forEach((pupil) => {
-        gsap.to(pupil, {
-          duration: 0.3,
-          opacity: 1,
-          ease: "power2.out",
-        });
-      });
-    });
+    if (hoverBtn) {
+      hoverBtn.addEventListener("mouseenter", closeEyes);
+      hoverBtn.addEventListener("mouseleave", openEyes);
+    }
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      if (hoverBtn) {
+        hoverBtn.removeEventListener("mouseenter", closeEyes);
+        hoverBtn.removeEventListener("mouseleave", openEyes);
+      }
+    };
   }
   eyeAnimations();
 }
