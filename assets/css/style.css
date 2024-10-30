@@ -540,11 +540,11 @@ h1.maintext {
 /* Question text styling */
 .question-text {
   font-size: 2rem;
-  color: #fff;
   margin-bottom: 2rem;
   font-weight: 600;
   text-shadow: 0 0 20px rgba(113, 178, 128, 0.5);
   letter-spacing: 0.5px;
+  color: #000;
 }
 
 /* Options grid layout */
@@ -559,12 +559,12 @@ h1.maintext {
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
-  color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 1.1rem;
   position: relative;
   overflow: hidden;
+  color: #000;
 }
 
 /* Option hover effect */

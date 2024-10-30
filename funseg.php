@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minds Of Teens</title>
     <?php include 'header/header.php'; ?>
 </head>
 
-<body id="p3" class="bg-gradient-to-br from-black to-zinc-900">
+<body id="funseg" class="bg-gradient-to-br from-black to-zinc-900">
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
         <div class="page1 relative min-h-screen" id="page1">
@@ -17,7 +16,7 @@
             <nav class="relative z-20 flex justify-between items-center px-8 py-6">
                 <div class="logo">
                     <a href="./index.php">
-                        <h3 class="magnet text-white text-2xl font-bold hover:text-amber-300 transition-colors">NueroVista.</h3>
+                        <h3 class="magnet text-white">NueroVista.</h3>
                     </a>
                 </div>
                 <div class="icon">

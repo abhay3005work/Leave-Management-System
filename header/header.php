@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HEllo</title>
+  <title>NueroVista - Mental Health Support</title>
+
+  <script src="https://unpkg.com/@barba/core"></script>
+  <script src="https://unpkg.com/@barba/css"></script>
 
   <link
     rel="stylesheet"

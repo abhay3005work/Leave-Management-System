@@ -198,7 +198,7 @@ function handleLoader() {
 handleLoader();
 
 // Page-specific code
-if (document.getElementById("p1")) {
+if (document.getElementById("home")) {
   let page2 = document.querySelector(".page2");
 
   // Nav links color change on scroll
@@ -346,25 +346,6 @@ if (document.getElementById("p1")) {
   framescrollanimation();
 
   // Page animations
-  function page1animation() {
-    const page1 = document.querySelector(".page1");
-    const h1text = document.querySelector(".page1text h1");
-    const nav = document.querySelector("nav");
-
-    let tl = gsap.timeline();
-    tl.from(nav, {
-      y: -50,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.5,
-    });
-    tl.from(h1text, {
-      x: -50,
-      opacity: 0,
-      duration: 0.7,
-    });
-  }
-  page1animation();
 
   function page3animation() {
     gsap.to(".page3 .box", {
@@ -421,16 +402,6 @@ if (document.getElementById("p1")) {
     });
   }
   Sheryimg();
-
-  // Loader animation
-  // function loaderAnimation() {
-  //   var loader = document.querySelector("#loader");
-  //   setTimeout(function () {
-  //     loader.style.top = "-100%";
-  //   }, 4200);
-  // }
-  // loaderAnimation();
-
   // Eye tracking and blinking animations
   function eyeAnimations() {
     // Track mouse movement for pupil following with parallax effect
@@ -631,10 +602,40 @@ if (document.getElementById("p1")) {
     };
   }
   eyeAnimations();
+  function sendEmail() {
+    const form = document.getElementById("contactForm");
+    const successMessage = document.getElementById("successMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          form.reset();
+          successMessage.classList.remove("hidden");
+          // Add entrance animation classes
+          successMessage.classList.add("animate-fadeIn");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    });
+
+    function closeSuccessMessage() {
+      successMessage.classList.add("hidden");
+    }
+  }
+  sendEmail();
 }
 
 // Page 2 specific code
-if (document.getElementById("p2")) {
+if (document.getElementById("abtus")) {
   // Hover effects
   Shery.hoverWithMediaCircle(".hvr", {
     images: [
@@ -693,7 +694,7 @@ if (document.getElementById("p2")) {
 }
 
 // Page 3 specific code
-if (document.getElementById("p3")) {
+if (document.getElementById("funseg")) {
   // Fun segment page animations
   function funsegmentpage() {
     let thumbnails = document.querySelectorAll(".thumbnail");
@@ -850,7 +851,7 @@ if (document.getElementById("p3")) {
 }
 
 // Quiz page specific code
-if (document.getElementById("p4")) {
+if (document.getElementById("quiz")) {
   // Initialize Three.js background and animations
   function initQuizBackground() {
     // Three.js Background

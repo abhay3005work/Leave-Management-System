@@ -4,21 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minds Of Teens</title>
     <?php include 'header/header.php'; ?>
+    <style>
+        /* Basic transition styles */
+        .transition-fade {
+            transition: 0.4s;
+            opacity: 1;
+        }
+
+        html.is-animating .transition-fade {
+            opacity: 0;
+        }
+    </style>
 </head>
 
-<body id="p2">
+<body id="abtus">
 
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
-
         <div class="page1 bg-zinc-900" id="page1">
             <img class="absolute z-[1]" src="https://t4.ftcdn.net/jpg/05/04/46/39/360_F_504463966_3PK2hdAKXebryGMgkpfZy5PrEpgub6VG.png" alt="">
             <nav>
                 <div class="logo">
                     <a href="./index.php">
-                        <h3 class="magnet text-white text-2xl font-bold hover:text-amber-300 transition-colors">NueroVista.</h3>
+                        <h3 class="magnet text-white">NueroVista.</h3>
                     </a>
                 </div>
                 <div class="icon">
@@ -140,30 +149,67 @@
                 </div>
 
                 <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <form class="space-y-6" method="POST" action="https://api.web3forms.com/submit" id="contactForm">
+                        <input type="hidden" name="access_key" value="14aa34fd-5e75-4612-9a17-4319421ffbd3">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="successMessage" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                            <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 transform transition-all duration-500 scale-100">
+                                <div class="text-center">
+                                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6">
+                                        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Message Sent Successfully!</h3>
+                                    <p class="text-gray-600 mb-8">Thank you for reaching out. We'll get back to you as soon as possible.</p>
+                                    <div class="animate-bounce">
+                                        <button onclick="closeSuccessMessage()" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105">
+                                            Continue Browsing
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="group">
+                                <label for="name" class="block text-gray-700 font-medium mb-2 transition-all group-focus-within:text-blue-500">Name</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 transition-all duration-300 hover:border-blue-300"
+                                    minlength="3" maxlength="50">
+                            </div>
+                            <div class="group">
+                                <label for="email" class="block text-gray-700 font-medium mb-2 transition-all group-focus-within:text-blue-500">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 transition-all duration-300 hover:border-blue-300"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            </div>
+                        </div>
+
+                        <div class="group">
                             <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                            <input type="text" id="subject" name="subject" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 transition-all duration-300 hover:border-blue-300"
+                                minlength="3" maxlength="100">
                         </div>
 
                         <div>
                             <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+                            <textarea id="message" name="message" rows="5" required
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 transition-all duration-300 hover:border-blue-300"
+                                minlength="10" maxlength="1000"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Send Message</button>
+                        <button type="submit" class="w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105 focus:ring-4 focus:ring-blue-200">
+                            Send Message
+                        </button>
                     </form>
+
+                    <script>
+
+                    </script>
                 </div>
 
                 <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -171,7 +217,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-lg">
                             <i class="fas fa-envelope text-3xl text-blue-500 mb-4"></i>
                             <h3 class="text-xl font-bold mb-2">Email</h3>
-                            <p class="text-gray-600">your.email@example.com</p>
+                            <p class="text-gray-600">abhayhanchate.work@gmail.com</p>
                         </div>
                     </div>
 
@@ -193,8 +239,7 @@
                 </div>
             </div>
         </div>
-
-
+    </div>
     </div>
     <?php include 'header/footer.php'; ?>
 </body>
