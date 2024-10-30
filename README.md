@@ -2,7 +2,13 @@
 
 A modern web platform dedicated to transforming mental health care through innovative digital solutions, particularly focused on teens and young adults.
 
-![NueroVista Banner](https://t4.ftcdn.net/jpg/05/04/46/39/360_F_504463966_3PK2hdAKXebryGMgkpfZy5PrEpgub6VG.png)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/abhay-hanchate/NueroVista/main/assets/takealongs/images/banner.png" alt="NueroVista Banner" width="100%">
+  
+  [![Website](https://img.shields.io/badge/Visit-Website-blue?style=for-the-badge)](https://nuerovista.com)
+  [![GitHub stars](https://img.shields.io/github/stars/abhay-hanchate/NueroVista?style=for-the-badge)](https://github.com/abhay-hanchate/NueroVista/stargazers)
+  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+</div>
 
 ## 🌟 Features
 
@@ -51,4 +57,8 @@ We welcome contributions! Feel free to submit pull requests or open issues to he
 
 ---
 
-Made with ❤️ for better mental health
+<div align="center">
+  <img src="https://raw.githubusercontent.com/abhay-hanchate/NueroVista/main/assets/takealongs/images/footer-banner.png" alt="Footer Banner" width="100%">
+  
+  Made with ❤️ for better mental health
+</div>

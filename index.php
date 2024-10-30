@@ -127,24 +127,24 @@
         </div>
       </div>
     </div>
-    <div class="page4 relative h-screen w-full flex flex-col items-center justify-center gap-8" style="background: linear-gradient(135deg, #9333ea, #7c3aed, #6366f1);">
+    <div class="page4 relative h-screen w-full flex flex-col items-center justify-center gap-8" style="background: linear-gradient(135deg, #a7f3d0, #6ee7b7, #34d399);">
       <div class="eye-container scale-75 mb-4">
         <div class="eye">
-          <div class="eyelid"></div>
+          <div class="eyelid" style="background: linear-gradient(135deg, #a7f3d0, #6ee7b7, #34d399);"></div>
           <div class="pupil"></div>
           <div class="reflection"></div>
         </div>
         <div class="eye" style="margin-left: 40px;">
-          <div class="eyelid"></div>
+          <div class="eyelid" style="background: linear-gradient(135deg, #a7f3d0, #6ee7b7, #34d399);"></div>
           <div class="pupil"></div>
           <div class="reflection"></div>
         </div>
       </div>
       <div class="text-center -mt-4">
-        <h2 class="text-5xl font-bold text-white mb-2">Ready for Some Fun?</h2>
-        <p class="text-xl text-white/80 mb-4">Join us for an exciting gaming experience!</p>
-        <p class="text-xl text-white/80 mb-6">Click below to start your adventure!</p>
-        <a href="funseg.php" class="inline-block px-12 py-6 bg-white text-purple-600 rounded-full text-2xl font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-200 hover:shadow-xl hover:bg-purple-50 border-4 border-white/50">
+        <h2 class="text-5xl font-bold text-black mb-2">Ready for Some Fun?</h2>
+        <p class="text-xl text-black/80 mb-4">Join us for an exciting gaming experience!</p>
+        <p class="text-xl text-black/80 mb-6">Click below to start your adventure!</p>
+        <a href="funseg.php" class="inline-block px-12 py-6 bg-emerald-500 text-white rounded-full text-2xl font-bold shadow-lg transform hover:-translate-y-1 transition-all duration-200 hover:shadow-xl hover:bg-emerald-600 border-4 border-emerald-400">
           Let's Play!
           <span class="ml-2">→</span>
         </a>

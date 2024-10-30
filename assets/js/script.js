@@ -197,7 +197,12 @@ function handleLoader() {
 }
 handleLoader();
 
-// Page-specific code
+/*
+ * Home page specific code
+ * Contains initialization and setup for different pages
+ * Each page has its own specific animations and functionality
+ * Includes home page, about us page, fun segment page, etc.
+ */
 if (document.getElementById("home")) {
   let page2 = document.querySelector(".page2");
 
@@ -634,7 +639,11 @@ if (document.getElementById("home")) {
   sendEmail();
 }
 
-// Page 2 specific code
+/*
+ * About Us specific code
+ * Handles hover effects with Shery.js media circles
+ * Sets up review slider with Swiper.js
+ */
 if (document.getElementById("abtus")) {
   // Hover effects
   Shery.hoverWithMediaCircle(".hvr", {
@@ -693,7 +702,11 @@ if (document.getElementById("abtus")) {
   });
 }
 
-// Page 3 specific code
+/*
+ * Fun Segment specific code
+ * Handles fun segment page animations and effects
+ * Sets up event listeners and Shery.js image effects
+ */
 if (document.getElementById("funseg")) {
   // Fun segment page animations
   function funsegmentpage() {
@@ -850,7 +863,11 @@ if (document.getElementById("funseg")) {
   });
 }
 
-// Quiz page specific code
+/*
+ * Quiz page specific code
+ * Handles initialization and animations for the quiz page background
+ * Sets up Three.js scene with custom geometry and materials
+ */
 if (document.getElementById("quiz")) {
   // Initialize Three.js background and animations
   function initQuizBackground() {
