@@ -1,44 +1,67 @@
 # NueroVista 🧠
 
-A modern web platform dedicated to transforming mental health care through innovative digital solutions, particularly focused on teens and young adults.
+A modern web platform dedicated to transforming mental health care through
+innovative digital solutions, particularly focused on teens and young adults.
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/abhay-hanchate/NueroVista/main/assets/takealongs/images/banner.png" alt="NueroVista Banner" width="100%">
-  
-  [![Website](https://img.shields.io/badge/Visit-Website-blue?style=for-the-badge)](https://nuerovista.com)
-  [![GitHub stars](https://img.shields.io/github/stars/abhay-hanchate/NueroVista?style=for-the-badge)](https://github.com/abhay-hanchate/NueroVista/stargazers)
-  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-</div>
+## 🌟 Key Features
 
-## 🌟 Features
+- **Mental Health Assessment**
 
-- **Interactive Mental Health Quiz** - Assess your mental wellbeing through our carefully crafted questionnaires
-- **Comprehensive Resources** - Access expert insights and educational content about mental health
-- **Supportive Community** - Connect with others on similar journeys
-- **Professional Guidance** - Learn from qualified mental health professionals
+  - Scientifically validated quizzes and assessments
+  - Track your mental wellbeing over time
+  - Get personalized insights and recommendations
 
-## 🎯 Our Mission
+- **Interactive Tools**
 
-At NueroVista, we believe in creating a safe, understanding space where young minds can explore, heal, and grow. Through our comprehensive resources, interactive tools, and supportive community, we're helping shape a future where mental health care is accessible to everyone.
+  - Engaging mood tracking interface
+  - Guided journaling exercises
+  - Meditation and breathing activities
+  - Stress relief games and activities
 
-## 🎨 Brand Colors
+- **Educational Resources**
 
-Our carefully selected color palette reflects our commitment to calm, healing, and growth:
+  - Expert-curated content about mental health
+  - Evidence-based coping strategies
+  - Self-help guides and worksheets
+  - Video lessons and tutorials
 
-- `#aod1a7` - Soothing Purple
-- `#9dac94` - Sage Green
-- `#78714a` - Earthy Taupe
-- `#264d25` - Forest Green
+- **Community Support**
 
-## 💻 Technologies Used
+  - Safe spaces to connect with peers
+  - Moderated discussion forums
+  - Share experiences and stories
+  - Find support groups
 
-- PHP
+- **Professional Network**
+  - Access to qualified mental health professionals
+  - Online counseling sessions
+  - Crisis support resources
+  - Mental health screening tools
+
+## 🎯 Mission & Vision
+
+NueroVista aims to make mental healthcare accessible, engaging and stigma-free
+for young people. We combine technology with evidence-based practices to create
+a supportive environment for mental wellness.
+
+## 🛠️ Technical Stack
+
+### Frontend
+
 - HTML5/CSS3
 - TailwindCSS
 - JavaScript
+- GSAP (GreenSock Animation Platform)
+- Three.js
+- Lenis Smooth Scroll
 - SwiperJS
-- BarbaJS
 - Font Awesome
+
+### Backend
+
+- PHP
+- MySQL
+- Apache Server
 
 ## 🚀 Getting Started
 
@@ -49,16 +72,23 @@ Our carefully selected color palette reflects our commitment to calm, healing, a
 
 ## 📞 Contact Us
 
-Have questions? Want to contribute? Reach out to us through our platform's contact form or connect with our team of mental health professionals.
+Have questions? Want to contribute? Here's how to reach us:
+
+- Email: abhayhanchate.work@gmail.com
+- Platform Contact Form
+- Connect with our mental health professionals
+- Follow us on social media
 
 ## 🤝 Contributing
 
-We welcome contributions! Feel free to submit pull requests or open issues to help improve NueroVista.
+We welcome contributions! Here's how you can help:
+
+- Submit pull requests
+- Open issues for bugs or suggestions
+- Share feedback on features
+- Help improve documentation
+- Spread the word about mental health
 
 ---
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/abhay-hanchate/NueroVista/main/assets/takealongs/images/footer-banner.png" alt="Footer Banner" width="100%">
-  
-  Made with ❤️ for better mental health
-</div>
+Made with ❤️ for better mental health
