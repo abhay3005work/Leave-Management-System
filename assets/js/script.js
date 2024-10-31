@@ -14,110 +14,204 @@ Shery.makeMagnet(".magnet", {
   ease: "cubic-bezier(0.23, 1, 0.320, 1)",
   duration: 0.5,
 });
-
 function initAudioPlayer() {
   const audio = document.querySelector("audio");
   const icon = document.getElementById("playsong");
 
-  // Only initialize if elements exist
+  // Early return if required elements don't exist
   if (!audio || !icon) return;
 
-  // Set initial state
-  audio.muted = true;
-  audio.volume = 0.4;
+  // Audio configuration constants
+  const VOLUME_LEVEL = 0.4;
+  const ANIMATION_DURATION = 0.3;
+  const ACTIVE_COLOR = "#9dac94";
+  const INACTIVE_COLOR = "#000";
+  const STATE_UPDATE_INTERVAL = 1000;
 
-  // Store audio state and current song in localStorage instead of sessionStorage
+  // Initialize audio state
+  const initializeAudio = () => {
+    audio.muted = true;
+    audio.volume = VOLUME_LEVEL;
+    audio.pause();
+  };
+
+  // Handle first-time visitors
+  const handleFirstVisit = () => {
+    const isFirstVisit = !localStorage.getItem("hasVisitedBefore");
+    if (isFirstVisit) {
+      localStorage.setItem("hasVisitedBefore", "true");
+      localStorage.setItem("audioPlaying", "false");
+      updateIconColor(INACTIVE_COLOR);
+    }
+    return isFirstVisit;
+  };
+
+  // Update icon color with animation
+  const updateIconColor = (color) => {
+    gsap.to(icon, { duration: ANIMATION_DURATION, color });
+  };
+
+  // Manage audio state in localStorage
   const updateAudioState = (isPlaying) => {
-    localStorage.setItem("audioPlaying", isPlaying);
-    localStorage.setItem("audioTime", audio.currentTime);
-    localStorage.setItem("currentSong", audio.src);
+    try {
+      localStorage.setItem("audioPlaying", isPlaying);
+      localStorage.setItem("audioTime", audio.currentTime);
+      localStorage.setItem("currentSong", audio.src);
+      localStorage.setItem("lastPlayedTime", Date.now().toString());
+    } catch (error) {
+      console.error("Error updating audio state:", error);
+    }
   };
 
   // Watch for audio source changes
-  const originalSrc = audio.src;
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === "attributes" && mutation.attributeName === "src") {
-        if (audio.src !== originalSrc) {
+  const setupSourceObserver = (isFirstVisit) => {
+    const originalSrc = audio.src;
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "src" &&
+          audio.src !== originalSrc &&
+          !isFirstVisit
+        ) {
+          const lastPlayedTime = localStorage.getItem("lastPlayedTime");
+          const currentTime = Date.now();
+          const timeDiff = currentTime - parseInt(lastPlayedTime);
+
+          // Only restore time if within last 30 minutes
+          if (timeDiff < 30 * 60 * 1000) {
+            const savedTime =
+              parseFloat(localStorage.getItem("audioTime")) || 0;
+            audio.currentTime = savedTime;
+          }
+
           audio.muted = false;
-          audio.play();
-          gsap.to(icon, { duration: 0.3, color: "#9dac94" });
-          updateAudioState(true);
+          audio
+            .play()
+            .then(() => {
+              updateIconColor(ACTIVE_COLOR);
+              updateAudioState(true);
+            })
+            .catch((error) => console.error("Playback failed:", error));
         }
+      });
+    });
+    observer.observe(audio, { attributes: true });
+    return observer;
+  };
+
+  // Restore previous audio state
+  const restoreAudioState = (isFirstVisit) => {
+    if (isFirstVisit) return;
+
+    try {
+      const wasPlaying = localStorage.getItem("audioPlaying") === "true";
+      const previousTime = parseFloat(localStorage.getItem("audioTime")) || 0;
+      const previousSong = localStorage.getItem("currentSong");
+      const lastPlayedTime = localStorage.getItem("lastPlayedTime");
+      const currentTime = Date.now();
+
+      if (previousSong && audio.src !== previousSong) {
+        audio.src = previousSong;
+      }
+
+      // Only restore time if within last 30 minutes
+      if (
+        lastPlayedTime &&
+        currentTime - parseInt(lastPlayedTime) < 30 * 60 * 1000
+      ) {
+        audio.currentTime = previousTime;
+      }
+
+      if (wasPlaying) {
+        audio.muted = false;
+        audio
+          .play()
+          .then(() => updateIconColor(ACTIVE_COLOR))
+          .catch((error) => {
+            console.warn("Autoplay prevented:", error);
+            audio.muted = true;
+            updateIconColor(INACTIVE_COLOR);
+          });
+      } else {
+        audio.pause();
+        audio.muted = true;
+        updateIconColor(INACTIVE_COLOR);
+      }
+    } catch (error) {
+      console.error("Error restoring audio state:", error);
+      initializeAudio();
+    }
+  };
+
+  // Handle play/pause toggle
+  window.songplay = () => {
+    try {
+      if (audio.paused) {
+        audio.muted = false;
+        audio
+          .play()
+          .then(() => {
+            updateIconColor(ACTIVE_COLOR);
+            updateAudioState(true);
+          })
+          .catch((error) => console.error("Play failed:", error));
+      } else {
+        audio.pause();
+        audio.muted = true;
+        updateIconColor(INACTIVE_COLOR);
+        updateAudioState(false);
+      }
+    } catch (error) {
+      console.error("Error toggling playback:", error);
+    }
+  };
+
+  // Setup event listeners
+  const setupEventListeners = () => {
+    // Periodic state updates
+    const stateUpdateInterval = setInterval(() => {
+      if (!audio.paused) updateAudioState(true);
+    }, STATE_UPDATE_INTERVAL);
+
+    // Handle audio end
+    audio.addEventListener("ended", () => {
+      updateAudioState(false);
+      updateIconColor(INACTIVE_COLOR);
+    });
+
+    // Save state before unload
+    window.addEventListener("beforeunload", () => {
+      if (!audio.paused) updateAudioState(true);
+    });
+
+    // Cleanup on page hide
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        clearInterval(stateUpdateInterval);
       }
     });
-  });
-
-  observer.observe(audio, { attributes: true });
-
-  // Restore audio state when page loads
-  const restoreAudioState = () => {
-    const wasPlaying = localStorage.getItem("audioPlaying") === "true";
-    const previousTime = parseFloat(localStorage.getItem("audioTime")) || 0;
-    const previousSong = localStorage.getItem("currentSong");
-
-    // If there was a previous song playing, restore it
-    if (previousSong && audio.src !== previousSong) {
-      audio.src = previousSong;
-    }
-
-    if (wasPlaying) {
-      audio.currentTime = previousTime;
-      audio.muted = false;
-      // Use play().catch to handle autoplay restrictions
-      audio.play().catch(() => {
-        console.log("Playback prevented. Interaction required.");
-      });
-      gsap.to(icon, { duration: 0.3, color: "#9dac94" });
-    } else {
-      audio.pause();
-      audio.muted = true;
-      gsap.to(icon, { duration: 0.3, color: "#000" });
-    }
   };
 
-  // Handle play/pause
-  window.songplay = () => {
-    if (audio.paused) {
-      audio.muted = false;
-      audio.play();
-      gsap.to(icon, { duration: 0.3, color: "#9dac94" });
-      updateAudioState(true);
-    } else {
-      audio.pause();
-      audio.muted = true;
-      gsap.to(icon, { duration: 0.3, color: "#000" });
-      updateAudioState(false);
-    }
+  // Initialize everything
+  const initialize = () => {
+    initializeAudio();
+    const isFirstVisit = handleFirstVisit();
+    const observer = setupSourceObserver(isFirstVisit);
+    setupEventListeners();
+    restoreAudioState(isFirstVisit);
+
+    // Return cleanup function
+    return () => {
+      observer.disconnect();
+    };
   };
 
-  // Update state periodically while playing
-  setInterval(() => {
-    if (!audio.paused) {
-      updateAudioState(true);
-    }
-  }, 1000);
-
-  // Update state when audio naturally ends
-  audio.addEventListener("ended", () => {
-    updateAudioState(false);
-    gsap.to(icon, { duration: 0.3, color: "#000" });
-  });
-
-  // Save state before page unload
-  window.addEventListener("beforeunload", () => {
-    if (!audio.paused) {
-      updateAudioState(true);
-    }
-  });
-
-  // Restore state on page load
-  restoreAudioState();
+  // Start initialization
+  initialize();
 }
-
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", initAudioPlayer);
-
 // Smooth scrolling with Lenis
 function lenisscroll() {
   const lenis = new Lenis();
@@ -130,8 +224,6 @@ function lenisscroll() {
   requestAnimationFrame(raf);
 }
 lenisscroll();
-// Handle loader animation and removal
-
 // Audio and icon animations
 function iconanimate() {
   const icon = document.querySelector(".icon i");
@@ -160,10 +252,10 @@ function iconanimate() {
   });
 }
 iconanimate();
-
 // Navigation animations
 function navAnimation() {
   let page2 = document.querySelector("#page2");
+  let audio = document.querySelector("audio");
 
   gsap.to("nav h3", {
     color: "black",
@@ -182,12 +274,21 @@ function navAnimation() {
       trigger: "page2",
       scroller: "body",
       start: "top top",
-      onEnter: () => gsap.to(".icon i", { color: "black" }),
-      onLeaveBack: () => gsap.to(".icon i", { color: "white" }),
+      onEnter: () => {
+        if (audio.paused) {
+          gsap.to(".icon i", { color: "black" });
+        }
+      },
+      onLeaveBack: () => {
+        if (audio.paused) {
+          gsap.to(".icon i", { color: "white" });
+        }
+      },
     },
   });
 }
 navAnimation();
+// Handle loader animation and removal
 function handleLoader() {
   window.addEventListener("load", function () {
     setTimeout(function () {
@@ -196,7 +297,6 @@ function handleLoader() {
   });
 }
 handleLoader();
-
 /*
  * Home page specific code
  * Contains initialization and setup for different pages
@@ -1127,4 +1227,160 @@ if (document.getElementById("quiz")) {
       });
     }
   });
+}
+/*
+ * Solution & Track page specific code
+ * Handles initialization and animations for the Solution & Track page
+ * Also manages ripple effects and window resize events
+ */
+if (document.getElementById("sol-n-track")) {
+  // Solution & Track page animations
+  function initSolTrackAnimations() {
+    // Initialize DataTable
+    $("#quizResultsTable").DataTable({
+      responsive: true,
+      pageLength: 10,
+      order: [[0, "desc"]],
+      dom: "Bfrtip",
+      buttons: [
+        {
+          extend: "copy",
+          className:
+            "bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2 mr-2",
+        },
+        {
+          extend: "excel",
+          className:
+            "bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2 mr-2",
+        },
+        {
+          extend: "pdf",
+          className:
+            "bg-green-600 hover:bg-green-700 text-white rounded-lg px-4 py-2",
+        },
+      ],
+      language: {
+        search: "Search results:",
+        lengthMenu: "Show _MENU_ entries per page",
+        info: "Showing _START_ to _END_ of _TOTAL_ entries",
+        paginate: {
+          first: "First",
+          last: "Last",
+          next: "Next",
+          previous: "Previous",
+        },
+      },
+    });
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Heading animation
+    gsap.to(".fade-in", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".fade-in",
+        start: "top 80%",
+      },
+    });
+
+    // Stats cards animation
+    gsap.to(".stats-card", {
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".stats-card",
+        start: "top 80%",
+      },
+    });
+
+    // Table animation
+    gsap.to(".table-container", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".table-container",
+        start: "top 80%",
+      },
+    });
+
+    // Buttons animation
+    gsap.to(".button-container", {
+      opacity: 1,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".button-container",
+        start: "top 90%",
+      },
+    });
+  }
+
+  initSolTrackAnimations();
+}
+
+/*
+ * Login/Signup Form Animations
+ * Handles animations for the login and signup forms including:
+ * - Initial fade in animation on page load
+ * - Smooth transitions between login and signup forms
+ * - Uses GSAP for fluid animations with opacity and y-position transforms
+ * - Manages form visibility through CSS classes
+ * - Exposes toggleForms() function globally for form switching
+ */
+if (document.getElementById("login")) {
+  // Login/Signup form animations
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+
+  // Initial animation on page load
+  gsap.from(loginForm, {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: "power2.out",
+  });
+
+  // Function to animate form transitions
+  window.toggleForms = () => {
+    if (!loginForm.classList.contains("hidden")) {
+      // Animate login form out
+      gsap.to(loginForm, {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        onComplete: () => {
+          loginForm.classList.add("hidden");
+          signupForm.classList.remove("hidden");
+          // Animate signup form in
+          gsap.fromTo(
+            signupForm,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.4 }
+          );
+        },
+      });
+    } else {
+      // Animate signup form out
+      gsap.to(signupForm, {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        onComplete: () => {
+          signupForm.classList.add("hidden");
+          loginForm.classList.remove("hidden");
+          // Animate login form in
+          gsap.fromTo(
+            loginForm,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.4 }
+          );
+        },
+      });
+    }
+  };
 }
