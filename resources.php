@@ -7,7 +7,7 @@
     <?php include 'header/header.php'; ?>
 </head>
 
-<body id="resources">
+<body id="resources" class="selection:bg-green-500 selection:text-white">
     <div class="loader-wrapper fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
         <div class="text-loader">
             <h1 class="text-6xl font-light text-white">

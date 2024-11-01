@@ -19,7 +19,7 @@ requireLogin();
     </style>
 </head>
 
-<body id="quiz" class="bg-gradient-to-br from-emerald-100 via-green-200 to-teal-100">
+<body id="quiz" class="bg-gradient-to-br from-emerald-100 via-green-200 to-teal-100 selection:bg-green-500 selection:text-white">
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <nav class="fixed z-20 flex justify-between items-center px-8 py-6">
         <div class="logo">

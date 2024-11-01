@@ -7,7 +7,7 @@
     <?php include 'header/header.php'; ?>
 </head>
 
-<body id="funseg" class="bg-gradient-to-br from-black to-zinc-900">
+<body id="funseg" class="bg-gradient-to-br from-black to-zinc-900 selection:bg-green-500 selection:text-white">
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
         <div class="page1 relative min-h-screen" id="page1">

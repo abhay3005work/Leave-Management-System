@@ -18,7 +18,7 @@ $user_name = $_SESSION['full_name'];
     <?php include 'header/header.php'; ?>
 </head>
 
-<body id="sol-n-track" class="bg-gradient-to-br from-green-900 to-green-500 min-h-screen">
+<body id="sol-n-track" class="bg-gradient-to-br from-green-900 to-green-500 min-h-screen selection:bg-green-500 selection:text-white">
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
         <nav class="flex justify-between items-center p-6">

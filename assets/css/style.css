@@ -20,6 +20,17 @@
   font-family: "MyFont";
 }
 
+/* Selection styles */
+::selection {
+  background: rgba(113, 178, 128, 0.3);
+  color: #134e5e;
+}
+
+::-moz-selection {
+  background: rgba(113, 178, 128, 0.3);
+  color: #134e5e;
+}
+
 html,
 body {
   height: 100%;

@@ -18,7 +18,7 @@
     </style>
 </head>
 
-<body id="abtus">
+<body id="abtus" class="selection:bg-green-500 selection:text-white">
 
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
