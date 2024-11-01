@@ -105,6 +105,11 @@ function initAudioPlayer() {
     if (isFirstVisit) return;
 
     try {
+      // Always start muted when opening in a new tab
+      audio.muted = true;
+      audio.pause();
+      updateIconColor(INACTIVE_COLOR);
+
       const wasPlaying = localStorage.getItem("audioPlaying") === "true";
       const previousTime = parseFloat(localStorage.getItem("audioTime")) || 0;
       const previousSong = localStorage.getItem("currentSong");
@@ -123,21 +128,8 @@ function initAudioPlayer() {
         audio.currentTime = previousTime;
       }
 
-      if (wasPlaying) {
-        audio.muted = false;
-        audio
-          .play()
-          .then(() => updateIconColor(ACTIVE_COLOR))
-          .catch((error) => {
-            console.warn("Autoplay prevented:", error);
-            audio.muted = true;
-            updateIconColor(INACTIVE_COLOR);
-          });
-      } else {
-        audio.pause();
-        audio.muted = true;
-        updateIconColor(INACTIVE_COLOR);
-      }
+      // Remove autoplay behavior
+      localStorage.setItem("audioPlaying", "false");
     } catch (error) {
       console.error("Error restoring audio state:", error);
       initializeAudio();
