@@ -1,3 +1,12 @@
+<?php
+require_once __DIR__ . '/dbconnection/session.php';
+
+// Require login to access this page
+requireLogin();
+
+// If the user is not logged in, the code below won't execute 
+// because requireLogin() will redirect to login.php
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,8 +27,13 @@
                 <h3 class="magnet text-emerald-800">NueroVista.</h3>
             </a>
         </div>
-        <div class="icon">
-            <i class="fa-solid fa-music magnet text-2xl hover:text-emerald-400 transition-colors cursor-pointer" style="color:#065f46" id="playsong" onclick="songplay()"></i>
+        <div class="flex items-center gap-4">
+            <div class="icon">
+                <i class="fa-solid fa-music magnet text-2xl hover:text-emerald-400 transition-colors cursor-pointer" style="color:#065f46" id="playsong" onclick="songplay()"></i>
+            </div>
+            <a href="logout.php" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-full transition-colors">
+                Logout
+            </a>
         </div>
     </nav>
 
@@ -278,7 +292,7 @@
         </div>
         <div class="flex justify-center mt-8 mb-12">
             <button id="submit-quiz" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-12 rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-emerald-400/50 backdrop-blur-sm flex items-center gap-3">
-                <span class="text-xl">Submit Responses</span>
+                <a href="./sol_n_track.php"><span class="text-xl">Submit & View Results</span></a>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>

@@ -747,3 +747,30 @@ h1.maintext {
 .switch-text a:hover {
   text-decoration: underline;
 }
+
+.quiz-history-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.quiz-history-table th,
+.quiz-history-table td {
+  border: 1px solid #e2e8f0;
+}
+
+.quiz-history-table th {
+  background-color: #f0fdf4;
+  font-weight: 600;
+}
+
+.quiz-history-table tr:hover {
+  background-color: #f0fdf4;
+}
+
+.attempt-card {
+  transition: transform 0.2s;
+}
+
+.attempt-card:hover {
+  transform: translateY(-2px);
+}

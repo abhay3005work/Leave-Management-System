@@ -1,0 +1,8 @@
+# Protect session and connection files
+<FilesMatch "^(session|connection)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes 

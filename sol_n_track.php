@@ -1,3 +1,16 @@
+<?php
+require_once 'dbconnection/session.php';
+
+// Check if user is not logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Get user ID and name for logged-in user
+$user_id = $_SESSION['user_id'];
+$user_name = $_SESSION['full_name'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +21,9 @@
 <body id="sol-n-track" class="bg-gradient-to-br from-green-900 to-green-500 min-h-screen">
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
-        <nav>
+        <nav class="flex justify-between items-center p-6">
             <div class="logo">
-                <a href="./index.php">
+                <a href="index.php">
                     <h3 class="magnet text-white">NueroVista.</h3>
                 </a>
             </div>
@@ -19,9 +32,13 @@
             </div>
         </nav>
         <div class="container mx-auto p-8">
-            <h1 class="text-4xl font-bold text-center mb-8 text-white hover:text-gray-200 transition-colors fade-in">
-                <i class="fas fa-chart-line mr-3"></i>Your Mental Health Journey
-            </h1>
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-white hover:text-gray-200 transition-colors fade-in mb-2">
+                    <i class="fas fa-chart-line mr-3"></i>Dashboard
+                </h1>
+                <h2 class="text-4xl font-bold text-white mb-4">Welcome, <?php echo htmlspecialchars($user_name); ?>!</h2>
+                <h3 class="text-2xl text-white/90">Your Mental Health Journey</h3>
+            </div>
 
             <div class="bg-white rounded-2xl shadow-2xl p-8 border border-green-200">
                 <div class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
