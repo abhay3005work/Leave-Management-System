@@ -33,104 +33,74 @@
                 <h1 class="text-white text-5xl font-light text-center transform absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">Why was Childhood Happy?</h1>
             </div>
         </div>
-        <div class="page2" style="position: relative; z-index: 10;">
-            <div class="swiper-container childhood-swiper w-full h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 overflow-hidden">
-                <div class="swiper-wrapper p-12">
+        <div class="page2 relative z-10">
+            <div class="swiper-container childhood-swiper w-full min-h-[80vh] bg-gradient-to-br from-emerald-50 to-emerald-100 overflow-hidden px-4 py-8 md:py-12">
+                <div class="swiper-wrapper">
                     <!-- Card 1 -->
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-2xl shadow-xl p-8 h-[500px] transform hover:scale-105 transition-all duration-300">
-                            <div class="w-full h-48 overflow-hidden rounded-xl mb-6">
-                                <img src="./assets/takealongs/images/r1.jpg" alt="Playing" class="w-full h-full object-cover">
+                    <div class="swiper-slide px-2 sm:px-4">
+                        <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4 sm:p-8 h-[450px] sm:h-[500px] transform hover:scale-105 transition-all duration-300 border border-emerald-100">
+                            <div class="w-full h-36 sm:h-48 overflow-hidden rounded-xl mb-4 sm:mb-6 shadow-lg">
+                                <img src="./assets/takealongs/images/r1.jpg" alt="Playing" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Endless Play Time</h3>
-                            <p class="text-gray-600 leading-relaxed">
+                            <h3 class="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 hover:text-emerald-600 transition-colors">Endless Play Time</h3>
+                            <p class="text-sm sm:text-base text-gray-600 leading-relaxed hover:text-gray-800 transition-colors">
                                 Remember when our biggest worry was deciding what game to play next? No schedules, no deadlines - just pure, unfiltered joy in playing with friends and making up new adventures every day.
                             </p>
                         </div>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-2xl shadow-xl p-8 h-[500px] transform hover:scale-105 transition-all duration-300">
-                            <div class="w-full h-48 overflow-hidden rounded-xl mb-6">
-                                <img src="./assets/takealongs/images/r2.jpg" alt="Imagination" class="w-full h-full object-cover">
+                    <div class="swiper-slide px-2 sm:px-4">
+                        <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4 sm:p-8 h-[450px] sm:h-[500px] transform hover:scale-105 transition-all duration-300 border border-emerald-100">
+                            <div class="w-full h-36 sm:h-48 overflow-hidden rounded-xl mb-4 sm:mb-6 shadow-lg">
+                                <img src="./assets/takealongs/images/r2.jpg" alt="Imagination" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Boundless Imagination</h3>
-                            <p class="text-gray-600 leading-relaxed">
+                            <h3 class="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 hover:text-emerald-600 transition-colors">Boundless Imagination</h3>
+                            <p class="text-sm sm:text-base text-gray-600 leading-relaxed hover:text-gray-800 transition-colors">
                                 A cardboard box could be a spaceship, a castle, or a time machine. Our imagination knew no bounds, and every day brought new possibilities for magical adventures.
                             </p>
                         </div>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-2xl shadow-xl p-8 h-[500px] transform hover:scale-105 transition-all duration-300">
-                            <div class="w-full h-48 overflow-hidden rounded-xl mb-6">
-                                <img src="./assets/takealongs/images/r3.jpg" alt="Family" class="w-full h-full object-cover">
+                    <div class="swiper-slide px-2 sm:px-4">
+                        <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4 sm:p-8 h-[450px] sm:h-[500px] transform hover:scale-105 transition-all duration-300 border border-emerald-100">
+                            <div class="w-full h-36 sm:h-48 overflow-hidden rounded-xl mb-4 sm:mb-6 shadow-lg">
+                                <img src="./assets/takealongs/images/r3.jpg" alt="Family" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Family Time</h3>
-                            <p class="text-gray-600 leading-relaxed">
+                            <h3 class="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 hover:text-emerald-600 transition-colors">Family Time</h3>
+                            <p class="text-sm sm:text-base text-gray-600 leading-relaxed hover:text-gray-800 transition-colors">
                                 Those precious moments with family - bedtime stories, weekend outings, and holiday celebrations. Every day felt special when surrounded by loving family members.
                             </p>
                         </div>
                     </div>
 
                     <!-- Card 4 -->
-                    <div class="swiper-slide">
-                        <div class="bg-white rounded-2xl shadow-xl p-8 h-[500px] transform hover:scale-105 transition-all duration-300">
-                            <div class="w-full h-48 overflow-hidden rounded-xl mb-6">
-                                <img src="./assets/takealongs/images/r4.jpg" alt="Friends" class="w-full h-full object-cover">
+                    <div class="swiper-slide px-2 sm:px-4">
+                        <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4 sm:p-8 h-[450px] sm:h-[500px] transform hover:scale-105 transition-all duration-300 border border-emerald-100">
+                            <div class="w-full h-36 sm:h-48 overflow-hidden rounded-xl mb-4 sm:mb-6 shadow-lg">
+                                <img src="./assets/takealongs/images/r4.jpg" alt="Friends" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Simple Friendships</h3>
-                            <p class="text-gray-600 leading-relaxed">
+                            <h3 class="text-xl sm:text-2xl font-bold text-emerald-800 mb-3 sm:mb-4 hover:text-emerald-600 transition-colors">Simple Friendships</h3>
+                            <p class="text-sm sm:text-base text-gray-600 leading-relaxed hover:text-gray-800 transition-colors">
                                 Friendships were uncomplicated - sharing toys, playing games, and having fun. No drama, just pure connections based on joy and shared adventures.
                             </p>
                         </div>
                     </div>
                 </div>
-                <!-- Navigation buttons -->
-                <div class="swiper-button-next text-emerald-800"></div>
-                <div class="swiper-button-prev text-emerald-800"></div>
+
+                <!-- Navigation buttons - Hidden on mobile -->
+                <div class="hidden md:block">
+                    <div class="swiper-button-next text-emerald-800 hover:text-emerald-600 transition-colors"></div>
+                    <div class="swiper-button-prev text-emerald-800 hover:text-emerald-600 transition-colors"></div>
+                </div>
+
                 <!-- Pagination -->
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination mt-2"></div>
             </div>
 
             <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-            <script>
-                const swiper = new Swiper('.childhood-swiper', {
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    centeredSlides: true,
-                    loop: true,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    breakpoints: {
-                        640: {
-                            slidesPerView: 2,
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                        },
-                    },
-                });
 
-                // Ensure swiper container and its elements stay on page2
-                document.querySelector('.page2').addEventListener('mouseover', function() {
-                    const swiperContainer = document.querySelector('.childhood-swiper');
-                    const navButtons = document.querySelectorAll('.swiper-button-next, .swiper-button-prev');
-
-                    swiperContainer.style.zIndex = '10';
-                    navButtons.forEach(button => {
-                        button.style.zIndex = '11';
-                    });
-                });
-            </script>
         </div>
         <div class="bg-gradient-to-br from-emerald-100 to-emerald-50 h-screen flex items-center">
             <div class="container mx-auto px-4 max-w-6xl">

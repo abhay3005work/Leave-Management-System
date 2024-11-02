@@ -14,9 +14,6 @@ requireLogin();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php include 'header/header.php'; ?>
-    <style>
-
-    </style>
 </head>
 
 <body id="quiz" class="bg-gradient-to-br from-emerald-100 via-green-200 to-teal-100 selection:bg-green-500 selection:text-white">

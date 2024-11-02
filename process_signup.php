@@ -57,3 +57,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
+
+/*
+This code handles the user registration/signup process:
+
+1. File Requirements:
+   - Includes session.php for session management
+   - Includes connection.php for database connectivity
+
+2. Request Validation:
+   - Verifies that the request method is POST
+   - Establishes database connection
+   - Checks if connection is successful
+
+3. Input Processing:
+   - Retrieves and sanitizes user input (full_name, email, password)
+   - Trims whitespace from full_name and email
+   
+4. Input Validation:
+   - Checks for empty fields
+   - Validates email format using filter_var()
+   
+5. Database Operations:
+   - Checks if email already exists in database
+   - Uses prepared statements for security
+   - Hashes password using PASSWORD_DEFAULT algorithm
+   - Inserts new user record into database
+   
+6. Session Management:
+   - On successful registration:
+     * Sets user_id and full_name in session
+     * Automatically logs user in
+     * Redirects to quiz.php
+   - On failure:
+     * Redirects back to login with appropriate error message
+
+7. Error Handling:
+   - Catches and logs database errors
+   - Uses PDO for secure database operations
+   - Provides user-friendly error messages
+   - Implements proper error redirection
+*/

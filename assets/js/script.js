@@ -63,7 +63,7 @@ function initAudioPlayer() {
     }
   };
 
-  // Watch for audio source changes
+  // Watch for audio source changes and page visibility
   const setupSourceObserver = (isFirstVisit) => {
     const originalSrc = audio.src;
     const observer = new MutationObserver((mutations) => {
@@ -85,14 +85,17 @@ function initAudioPlayer() {
             audio.currentTime = savedTime;
           }
 
-          audio.muted = false;
-          audio
-            .play()
-            .then(() => {
-              updateIconColor(ACTIVE_COLOR);
-              updateAudioState(true);
-            })
-            .catch((error) => console.error("Playback failed:", error));
+          const wasPlaying = localStorage.getItem("audioPlaying") === "true";
+          if (wasPlaying) {
+            audio.muted = false;
+            audio
+              .play()
+              .then(() => {
+                updateIconColor(ACTIVE_COLOR);
+                updateAudioState(true);
+              })
+              .catch((error) => console.error("Playback failed:", error));
+          }
         }
       });
     });
@@ -105,11 +108,6 @@ function initAudioPlayer() {
     if (isFirstVisit) return;
 
     try {
-      // Always start muted when opening in a new tab
-      audio.muted = true;
-      audio.pause();
-      updateIconColor(INACTIVE_COLOR);
-
       const wasPlaying = localStorage.getItem("audioPlaying") === "true";
       const previousTime = parseFloat(localStorage.getItem("audioTime")) || 0;
       const previousSong = localStorage.getItem("currentSong");
@@ -128,8 +126,19 @@ function initAudioPlayer() {
         audio.currentTime = previousTime;
       }
 
-      // Remove autoplay behavior
-      localStorage.setItem("audioPlaying", "false");
+      if (wasPlaying) {
+        audio.muted = false;
+        audio
+          .play()
+          .then(() => {
+            updateIconColor(ACTIVE_COLOR);
+          })
+          .catch((error) => console.error("Restore playback failed:", error));
+      } else {
+        audio.muted = true;
+        audio.pause();
+        updateIconColor(INACTIVE_COLOR);
+      }
     } catch (error) {
       console.error("Error restoring audio state:", error);
       initializeAudio();
@@ -177,10 +186,35 @@ function initAudioPlayer() {
       if (!audio.paused) updateAudioState(true);
     });
 
-    // Cleanup on page hide
+    // Handle page visibility changes
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         clearInterval(stateUpdateInterval);
+        if (!audio.paused) {
+          updateAudioState(true);
+        }
+      } else {
+        // When page becomes visible again, restore audio if it was playing
+        const wasPlaying = localStorage.getItem("audioPlaying") === "true";
+        if (wasPlaying && audio.paused) {
+          audio.muted = false;
+          audio
+            .play()
+            .catch((error) => console.error("Resume playback failed:", error));
+        }
+      }
+    });
+
+    // Handle page transitions
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        const wasPlaying = localStorage.getItem("audioPlaying") === "true";
+        if (wasPlaying) {
+          audio.muted = false;
+          audio
+            .play()
+            .catch((error) => console.error("Resume playback failed:", error));
+        }
       }
     });
   };
@@ -1375,4 +1409,141 @@ if (document.getElementById("login")) {
       });
     }
   };
+
+  // Function to validate signup form
+  window.validateSignupForm = () => {
+    const password = document.getElementById("signup-password").value;
+    const confirmPassword = document.querySelector(
+      'input[name="confirm_password"]'
+    ).value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return false;
+    }
+    return true;
+  };
 }
+/*
+ * Login Form Block
+ * - Handles all login/signup form animations and validations
+ * - Uses GSAP for smooth animations between form transitions
+ * - Initial fade in animation when page loads
+ * - Toggle function switches between login and signup forms with animations
+ * - Form validation ensures matching passwords during signup
+ * - Makes toggleForms and validateSignupForm available globally
+ */
+
+if (document.getElementById("resources")) {
+  // Resources page animations
+  const swiper = new Swiper(".childhood-swiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    centeredSlides: true,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+      1280: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+    },
+    on: {
+      init: function () {
+        checkArrowsVisibility();
+      },
+      resize: function () {
+        checkArrowsVisibility();
+      },
+    },
+  });
+
+  // Function to check window width and toggle arrow visibility
+  function checkArrowsVisibility() {
+    const arrows = document.querySelectorAll(
+      ".swiper-button-next, .swiper-button-prev"
+    );
+    arrows.forEach((arrow) => {
+      arrow.style.display = window.innerWidth < 768 ? "none" : "flex";
+    });
+  }
+
+  // Handle touch events better on mobile
+  const swiperEl = document.querySelector(".childhood-swiper");
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  swiperEl.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    },
+    false
+  );
+
+  swiperEl.addEventListener(
+    "touchend",
+    (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    },
+    false
+  );
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        swiper.slideNext();
+      } else {
+        swiper.slidePrev();
+      }
+    }
+  }
+
+  // Ensure proper z-index handling
+  document.querySelector(".page2").addEventListener("mouseover", function () {
+    const swiperContainer = document.querySelector(".childhood-swiper");
+    const navButtons = document.querySelectorAll(
+      ".swiper-button-next, .swiper-button-prev"
+    );
+
+    swiperContainer.style.zIndex = "10";
+    navButtons.forEach((button) => {
+      button.style.zIndex = "11";
+    });
+  });
+}
+/*
+ * Resources Page Block
+ * - Initializes and configures Swiper.js carousel
+ * - Responsive design with different slides per view based on breakpoints
+ * - Auto-playing carousel with 3 second delay
+ * - Navigation arrows and pagination dots
+ * - Mobile-optimized with touch event handling
+ * - Automatic arrow visibility toggle based on screen size
+ * - Custom swipe threshold for better mobile interaction
+ * - Z-index management for proper layering of elements
+ * - Handles window resize events for responsive behavior
+ */

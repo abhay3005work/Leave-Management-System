@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/dbconnection/session.php';
+$csrf_token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $csrf_token;
 
 // Redirect if already logged in
 if (isLoggedIn()) {
@@ -50,6 +52,9 @@ if (isLoggedIn()) {
                         case 'login_required':
                             echo "Please log in to access that page";
                             break;
+                        case 'rate_limited':
+                            echo "Too many login attempts. Please try again in a few minutes.";
+                            break;
                         default:
                             echo "An error occurred";
                     }
@@ -60,6 +65,7 @@ if (isLoggedIn()) {
                 <div class="form-box bg-white/95 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-green-100">
                     <h2 class="text-3xl font-bold text-green-800 mb-8 text-center">Welcome Back</h2>
                     <form method="POST" action="process_login.php">
+                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                         <div class="space-y-6">
                             <div>
                                 <input type="email" name="email" placeholder="Email" required
@@ -84,7 +90,8 @@ if (isLoggedIn()) {
             <div class="form-container hidden" id="signupForm">
                 <div class="form-box bg-white/95 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-green-100">
                     <h2 class="text-3xl font-bold text-green-800 mb-8 text-center">Create Account</h2>
-                    <form method="POST" action="process_signup.php">
+                    <form method="POST" action="process_signup.php" onsubmit="return validateSignupForm()">
+                        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                         <div class="space-y-6">
                             <div>
                                 <input type="text" name="full_name" placeholder="Full Name" required
@@ -95,8 +102,11 @@ if (isLoggedIn()) {
                                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-green-500 focus:outline-none transition-colors">
                             </div>
                             <div>
-                                <input type="password" name="password" placeholder="Password" required
+                                <input type="password" name="password" id="signup-password"
+                                    placeholder="Password (min 8 characters)" required
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-green-500 focus:outline-none transition-colors">
+                                <small class="text-gray-500">Password must be at least 8 characters with letters and numbers</small>
                             </div>
                             <div>
                                 <input type="password" name="confirm_password" placeholder="Confirm Password" required
@@ -127,7 +137,62 @@ if (isLoggedIn()) {
             signupForm.classList.toggle('active');
             signupForm.classList.toggle('hidden');
         }
+
+        function validateSignupForm() {
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return false;
+            }
+            return true;
+        }
     </script>
 </body>
 
 </html>
+
+<!-- /*
+This login page implements the following backend functionality:
+
+1. Session Management:
+- Requires session.php for session handling functions
+- Checks if user is already logged in using isLoggedIn()
+- Handles redirects based on session state:
+* If user is logged in and has a redirect URL saved, goes to that URL
+* Otherwise redirects to quiz.php
+* Cleans up redirect URL from session after use
+
+2. Error Handling:
+- Displays error messages via GET parameters
+- Handles various error types:
+* email_exists: When registering with existing email
+* registration_failed: General registration errors
+* invalid_credentials: Wrong email/password
+* server_error: Backend/database issues
+* login_required: Accessing protected pages while logged out
+* rate_limited: Too many login attempts
+- Shows user-friendly error messages in a styled alert box
+
+3. Form Processing:
+- Login Form:
+* POSTs to process_login.php
+* Collects email and password
+* Required field validation
+- Signup Form:
+* POSTs to process_signup.php
+* Collects full name, email, password, and confirmation
+* Required field validation
+
+4. UI State Management:
+- JavaScript toggleForms() function switches between login/signup views
+- Uses CSS classes 'active' and 'hidden' for form visibility
+- Maintains form state during error displays
+
+5. Page Structure:
+- Includes header.php for common head elements
+- Includes footer.php for common footer elements
+- Responsive layout with Tailwind CSS
+- Consistent styling with the rest of the application
+*/ -->
