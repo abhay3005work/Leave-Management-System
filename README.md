@@ -50,7 +50,9 @@ a supportive environment for mental wellness.
 
 - HTML5/CSS3
 - TailwindCSS
+- Bootstrap
 - JavaScript
+- JQuery
 - GSAP (GreenSock Animation Platform)
 - Three.js
 - Lenis Smooth Scroll
