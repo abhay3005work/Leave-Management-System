@@ -8,13 +8,13 @@
 </head>
 
 <body id="resources" class="selection:bg-green-500 selection:text-white">
-    <!-- <div class="loader-wrapper fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
+    <div class="loader-wrapper fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
         <div class="text-loader">
             <h1 class="text-6xl font-light text-white">
                 NueroVista.
             </h1>
         </div>
-    </div> -->
+    </div>
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
         <div class="page1">
