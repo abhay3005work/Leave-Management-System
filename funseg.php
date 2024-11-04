@@ -133,10 +133,7 @@
         <div class="h-32"></div>
 
     </div>
-    </div>
 
-
-    </div>
     <?php include 'header/footer.php'; ?>
 </body>
 

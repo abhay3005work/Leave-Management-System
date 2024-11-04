@@ -126,73 +126,51 @@ if (isLoggedIn()) {
         </div>
     </div>
     <?php include 'header/footer.php'; ?>
-
-    <script>
-        function toggleForms() {
-            const loginForm = document.getElementById('loginForm');
-            const signupForm = document.getElementById('signupForm');
-
-            loginForm.classList.toggle('active');
-            loginForm.classList.toggle('hidden');
-            signupForm.classList.toggle('active');
-            signupForm.classList.toggle('hidden');
-        }
-
-        function validateSignupForm() {
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return false;
-            }
-            return true;
-        }
-    </script>
 </body>
 
 </html>
 
-<!-- /*
-This login page implements the following backend functionality:
+<!-- //#region Session Management
+// Requires session.php for session handling functions
+// Checks if user is already logged in using isLoggedIn()
+// Handles redirects based on session state:
+// * If user is logged in and has a redirect URL saved, goes to that URL
+// * Otherwise redirects to quiz.php
+// * Cleans up redirect URL from session after use
+//#endregion
 
-1. Session Management:
-- Requires session.php for session handling functions
-- Checks if user is already logged in using isLoggedIn()
-- Handles redirects based on session state:
-* If user is logged in and has a redirect URL saved, goes to that URL
-* Otherwise redirects to quiz.php
-* Cleans up redirect URL from session after use
+//#region Error Handling
+// Displays error messages via GET parameters
+// Handles various error types:
+// * email_exists: When registering with existing email
+// * registration_failed: General registration errors
+// * invalid_credentials: Wrong email/password
+// * server_error: Backend/database issues
+// * login_required: Accessing protected pages while logged out
+// * rate_limited: Too many login attempts
+// Shows user-friendly error messages in a styled alert box
+//#endregion
 
-2. Error Handling:
-- Displays error messages via GET parameters
-- Handles various error types:
-* email_exists: When registering with existing email
-* registration_failed: General registration errors
-* invalid_credentials: Wrong email/password
-* server_error: Backend/database issues
-* login_required: Accessing protected pages while logged out
-* rate_limited: Too many login attempts
-- Shows user-friendly error messages in a styled alert box
+//#region Form Processing
+// Login Form:
+// * POSTs to process_login.php
+// * Collects email and password
+// * Required field validation
+// Signup Form:
+// * POSTs to process_signup.php
+// * Collects full name, email, password, and confirmation
+// * Required field validation
+//#endregion
 
-3. Form Processing:
-- Login Form:
-* POSTs to process_login.php
-* Collects email and password
-* Required field validation
-- Signup Form:
-* POSTs to process_signup.php
-* Collects full name, email, password, and confirmation
-* Required field validation
+//#region UI State Management
+// JavaScript toggleForms() function switches between login/signup views
+// Uses CSS classes 'active' and 'hidden' for form visibility
+// Maintains form state during error displays
+//#endregion
 
-4. UI State Management:
-- JavaScript toggleForms() function switches between login/signup views
-- Uses CSS classes 'active' and 'hidden' for form visibility
-- Maintains form state during error displays
-
-5. Page Structure:
-- Includes header.php for common head elements
-- Includes footer.php for common footer elements
-- Responsive layout with Tailwind CSS
-- Consistent styling with the rest of the application
-*/ -->
+//#region Page Structure
+// Includes header.php for common head elements
+// Includes footer.php for common footer elements
+// Responsive layout with Tailwind CSS
+// Consistent styling with the rest of the application
+//#endregion -->

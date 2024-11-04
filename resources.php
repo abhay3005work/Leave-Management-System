@@ -8,13 +8,13 @@
 </head>
 
 <body id="resources" class="selection:bg-green-500 selection:text-white">
-    <div class="loader-wrapper fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
+    <!-- <div class="loader-wrapper fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
         <div class="text-loader">
             <h1 class="text-6xl font-light text-white">
                 NueroVista.
             </h1>
         </div>
-    </div>
+    </div> -->
     <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
     <div class="main">
         <div class="page1">
@@ -163,9 +163,48 @@
                 </div>
             </div>
         </div>
-        <div class="min-h-screen bg-gradient-to-br from-black to-zinc-900">
+        <div class="bg-gradient-to-b from-sky-50 to-white py-24">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Embrace the Light Within</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Let positivity guide your journey to mental wellness through our carefully curated resources and supportive community.</p>
+                </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 text-center mb-4">Daily Inspiration</h3>
+                        <p class="text-gray-600 text-center">Start each day with uplifting quotes and positive affirmations to brighten your perspective.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 text-center mb-4">Mindful Moments</h3>
+                        <p class="text-gray-600 text-center">Practice mindfulness exercises designed to bring peace and clarity to your daily routine.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 text-center mb-4">Self-Care Rituals</h3>
+                        <p class="text-gray-600 text-center">Discover gentle ways to nurture your well-being and create moments of joy in your life.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
 
 
 
