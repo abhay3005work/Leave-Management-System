@@ -203,6 +203,55 @@
                 </div>
             </div>
         </div>
+        <div class="knowsec">
+            <div class="knowbody">
+                <div class="kleft">
+                    <div class="kelem">
+                        <h3>Lorem.</h3>
+                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                        <h4>Lorem, ipsum dolor.</h4>
+                    </div>
+                    <div class="kelem">
+                        <h3>Lorem.</h3>
+                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                        <h4>Lorem, ipsum dolor.</h4>
+                    </div>
+                    <div class="kelem">
+                        <h3>Lorem.</h3>
+                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                        <h4>Lorem, ipsum dolor.</h4>
+                    </div>
+                    <div class="kelem last">
+                        <h3>Lorem.</h3>
+                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+                        <h4>Lorem, ipsum dolor.</h4>
+                    </div>
+                </div>
+                <div class="kright">
+                    <div class="kimg">
+                        <img
+                            src="https://images.unsplash.com/photo-1604341305856-4bb8d38297e4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="" />
+                        <img
+                            src="https://images.unsplash.com/photo-1593647971407-815193f83d1b?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="" />
+                        <img
+                            src="https://images.unsplash.com/photo-1583639000530-fdc19a1ea647?q=80&w=1527&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="" />
+                        <img
+                            src="https://plus.unsplash.com/premium_photo-1680836316227-ef17dbbcfb27?q=80&w=1527&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-center mt-20">
+                <button
+                    type="button"
+                    class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    Dark
+                </button>
+            </div>
+        </div>
     </div>
     <?php include 'header/footer.php'; ?>
 </body>

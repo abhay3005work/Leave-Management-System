@@ -1534,6 +1534,44 @@ if (document.getElementById("resources")) {
       button.style.zIndex = "11";
     });
   });
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Text scrolling animation
+  gsap.to(".kelem", {
+    scrollTrigger: {
+      trigger: ".knowbody",
+      pin: true,
+      start: "top top",
+      end: "bottom bottom",
+      endTrigger: ".last",
+      scrub: 1,
+    },
+    y: "-300%",
+    ease: "power1.inOut",
+  });
+
+  // Image effect with proper scroll tracking
+  let sections = document.querySelectorAll(".kelem");
+  Shery.imageEffect(".kimg", {
+    style: 5,
+    config: {
+      onMouse: {
+        value: 1,
+      },
+    },
+    slideStyle: (setScroll) => {
+      sections.forEach(function (section, index) {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          scrub: 1,
+          onUpdate: function (prog) {
+            setScroll(prog.progress + index);
+          },
+        });
+      });
+    },
+  });
 }
 /*
  * Resources Page Block
