@@ -1360,8 +1360,8 @@ if (document.getElementById("sol-n-track")) {
  */
 if (document.getElementById("login")) {
   // Login/Signup form animations
-  const loginForm = document.getElementById("loginForm");
-  const signupForm = document.getElementById("signupForm");
+  let loginForm = document.getElementById("loginForm");
+  let signupForm = document.getElementById("signupForm");
 
   // Initial animation on page load
   gsap.from(loginForm, {
@@ -1385,8 +1385,15 @@ if (document.getElementById("login")) {
           // Animate signup form in
           gsap.fromTo(
             signupForm,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.4 }
+            {
+              opacity: 0,
+              y: 20,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+            }
           );
         },
       });
@@ -1402,26 +1409,33 @@ if (document.getElementById("login")) {
           // Animate login form in
           gsap.fromTo(
             loginForm,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.4 }
+            {
+              opacity: 0,
+              y: 20,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+            }
           );
         },
       });
     }
-  };
 
-  // Function to validate signup form
-  window.validateSignupForm = () => {
-    const password = document.getElementById("signup-password").value;
-    const confirmPassword = document.querySelector(
-      'input[name="confirm_password"]'
-    ).value;
+    // Function to validate signup form
+    window.validateSignupForm = () => {
+      const password = document.getElementById("signup-password").value;
+      const confirmPassword = document.querySelector(
+        'input[name="confirm_password"]'
+      ).value;
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return false;
-    }
-    return true;
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return false;
+      }
+      return true;
+    };
   };
 }
 /*

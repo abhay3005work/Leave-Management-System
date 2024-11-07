@@ -20,7 +20,7 @@
 
 <body id="abtus" class="selection:bg-green-500 selection:text-white">
 
-    <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
+    <audio autoplay muted loop src="./assets/takealongs/audio/audio2.mp3"></audio>
     <div class="main">
         <div class="page1 bg-zinc-900" id="page1">
             <img class="absolute z-[1]" src="https://t4.ftcdn.net/jpg/05/04/46/39/360_F_504463966_3PK2hdAKXebryGMgkpfZy5PrEpgub6VG.png" alt="">

@@ -61,7 +61,7 @@ if (isLoggedIn()) {
                     ?>
                 </div>
             <?php endif; ?>
-            <div class="form-container active" id="loginForm">
+            <div class="form-container active loginForm" id="loginForm">
                 <div class="form-box bg-white/95 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-green-100">
                     <h2 class="text-3xl font-bold text-green-800 mb-8 text-center">Welcome Back</h2>
                     <form method="POST" action="process_login.php">
@@ -126,6 +126,84 @@ if (isLoggedIn()) {
         </div>
     </div>
     <?php include 'header/footer.php'; ?>
+    <script>
+        if (document.getElementById("login")) {
+            // Login/Signup form animations
+            let loginForm = document.getElementById("loginForm");
+            let signupForm = document.getElementById("signupForm");
+
+            // Initial animation on page load
+            gsap.from(loginForm, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power2.out",
+            });
+
+            // Function to animate form transitions
+            window.toggleForms = () => {
+                if (!loginForm.classList.contains("hidden")) {
+                    // Animate login form out
+                    gsap.to(loginForm, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.4,
+                        onComplete: () => {
+                            loginForm.classList.add("hidden");
+                            signupForm.classList.remove("hidden");
+                            // Animate signup form in
+                            gsap.fromTo(
+                                signupForm, {
+                                    opacity: 0,
+                                    y: 20
+                                }, {
+                                    opacity: 1,
+                                    y: 0,
+                                    duration: 0.4
+                                }
+                            );
+                        },
+                    });
+                } else {
+                    // Animate signup form out
+                    gsap.to(signupForm, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.4,
+                        onComplete: () => {
+                            signupForm.classList.add("hidden");
+                            loginForm.classList.remove("hidden");
+                            // Animate login form in
+                            gsap.fromTo(
+                                loginForm, {
+                                    opacity: 0,
+                                    y: 20
+                                }, {
+                                    opacity: 1,
+                                    y: 0,
+                                    duration: 0.4
+                                }
+                            );
+                        },
+                    });
+                }
+
+                // Function to validate signup form
+                window.validateSignupForm = () => {
+                    const password = document.getElementById("signup-password").value;
+                    const confirmPassword = document.querySelector(
+                        'input[name="confirm_password"]'
+                    ).value;
+
+                    if (password !== confirmPassword) {
+                        alert("Passwords do not match!");
+                        return false;
+                    }
+                    return true;
+                };
+            };
+        }
+    </script>
 </body>
 
 </html>

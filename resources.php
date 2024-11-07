@@ -15,7 +15,7 @@
             </h1>
         </div>
     </div>
-    <audio autoplay muted loop src="./assets/takealongs/audio/Anuv Jain - JO TUM MERE HO (Lyrics) - Indie India (youtube).mp3"></audio>
+    <audio autoplay muted loop src="./assets/takealongs/audio/audio2.mp3"></audio>
     <div class="main">
         <div class="page1">
             <nav class="fixed z-20 flex justify-between items-center px-8 py-6">
