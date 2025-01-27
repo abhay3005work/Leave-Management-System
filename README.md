@@ -32,11 +32,7 @@ innovative digital solutions, particularly focused on teens and young adults.
   - Share experiences and stories
   - Find support groups
 
-- **Professional Network**
-  - Access to qualified mental health professionals
-  - Online counseling sessions
-  - Crisis support resources
-  - Mental health screening tools
+
 
 ## 🎯 Mission & Vision
 
